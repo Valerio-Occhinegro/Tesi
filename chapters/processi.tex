@@ -3,20 +3,38 @@
 
 In questo capitolo sono riassunti i processi e le metodologie che lo studente ha applicato durante lo sviluppo del progetto di stage. 
 
-\section{Gestione della configurazione}
-La gestione della configurazione è il processo tramite il quale è possibile identificare, controllare e coordinare i vari componenti del software e le risorse ad esso associate durante l'intero ciclo di vita del prodotto. Grazie a questo processo gli sviluppatori possono tenere traccia delle modifiche e gestire le varie versioni garantendo il funzionamento del prodotto nel tempo.
+
+\section{Ciclo di vita del software}
+Il ciclo di vita del software è l'insieme delle attività e dei processi che tutti i membri coinvolti devono seguire per la buona riuscita del prodotto.
+L'adozione di un modello di ciclo di vita è fondamentale per rispettare le scadenze, rimanere all'interno del budget ed evitare conflitti all'interno e all'esterno del team.
+
+\subsection{Filosofia Agile}
+Per favorire la collaborazione l'azienda si affida alla filosofia Agile e in particolare al modello SCRUM che ha come unità fondamentale lo "sprint" ossia un periodo di tempo breve (1 settimana) che viene utilizzato per sviluppare e testare nuove funzionalità; grazie a questi avanzamenti rapidi è possibile fornire codice flessibile e rapidamente adattabile alle nuove esigenze. 
 
 \subsection{Tecnologie di supporto}
-Le tencologie utilizzate per il versionamento del prodotto sono:
+\begin{itemize}
+    \item Plane: è un ITS (Issue Tracking System) utilizzato per monitorare l'avanzamento del progetto e per assegnare a ciascun membro i compiti da effettuare; consente a tutte le parti coinvolte di avere una visione di insieme su quello che bisogna realizzare per portare a compimento lo sviluppo. In particolare è stato scelto perché altamente personalizzabile e per la sua natura open-source.
+\end{itemize}
+
+\section{Gestione della configurazione}
+La gestione della configurazione è il processo tramite il quale è possibile identificare, controllare e coordinare i vari componenti del software e le risorse a esso associate durante l'intero ciclo di vita del prodotto. Grazie a questo processo gli sviluppatori possono tenere traccia delle modifiche e gestire le varie versioni garantendo il funzionamento del prodotto nel tempo.
+
+\subsection{Tecnologie di supporto}
+Le tencnologie utilizzate per il versionamento del prodotto sono:
 \begin{itemize}
     \item Git: è un DVCS(Distributed Version Controll System) ampiamente diffuso che consente di gestire e monitorare i cambiamenti del codice e della documentazione. Questo strumento è fondamentale per avere una storia completa dello sviluppo da poter sfruttare in caso di necessità. Il codice viene inserito all'interno di un repository, ossia una cartella che contiene tutti i file relativi al progetto, dove è possibile salvare ogni cambiamento tramite commit. Il commit segnala ogni modifica e la data in cui viene attuata, è dunque sufficiente spostarsi tra i vari commit per tornare ad una versione più o meno aggiornata.    
     \item Gitea: è un servizio che supporta le repository di Git, è simile a GitHub, Bitbucket e GitLab, ma ha il vantaggio di essere self-hosted. 
-    Tutti i repository aziendali sono mantenuti sul server interno, ciò consente di avere una risposta molto rapida.
-
-    %commit e branch tutti i salcazzi vari
+    Essendo tutti i repository aziendali mantenuti sul server interno, le comunicazioni atte al versionamento hanno risposta molto rapida.
 \end{itemize}
 
-\section{Processo sviluppo prodotto}
+\subsubsection{Regole di branch e commit}
+Per standardizzare l'utilizzo delle tecnologie di versionamento l'azienda adotta due convenzioni:
+\begin{itemize}
+    \item Git Flow: è un modello di branching ideato per avere un miglior controllo delle release.
+    \item Conventional Commits: è una specifica basata su regole, che consentono una facile lettura dei commit sia da parte di utenti che da parte di strumenti automatici. 
+\end{itemize}
+
+
 
 %processo di sviluppo ci schiaffo lo scrum
 
