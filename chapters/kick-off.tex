@@ -25,23 +25,67 @@ Gli utenti sono in grado di immagazzinare i dati raccolti su clienti e potenzial
     \item Clusterizzazione: la fase successiva alla raccolta dei dati consiste nello sviluppo di una IA addestrata in maniera non supervisionata che sia in grado di suddividere le varie immagini in clusters, differenziati in base alle caratteristiche riconosciute in ogni sito. 
     \item IA classificativa: in seguito alla raccolta di un dataset di dimensioni congrue si procede alla suddivisione manuale degli screenshot precedentemente clusterizzati su una base qualitativa (siti migliorabili e siti ottimi); questo processo viene svolto con l'ottica dell'addestramento di una IA classificativa.
     L'IA addestrata in maniera supervisionata ha l'obiettivo di affidare un punteggio in valori centesimali a ogni sito. 
-    \item Invio di e-mail automatizzato: l'automazione della posta elettronica procede con l'invio di e-mail personalizzate ai proprietari dei siti web che hanno ricevuto una valutazione scarsa.
+    \item Invio di e-mail automatizzato: l'automazione della posta elettronica procede con l'invio di e-mail personalizzate ai proprietari dei siti web che hanno ricevuto una valutazione scarsa, per offrire loro un servizio di miglioramento.
 \end{itemize}
 
-
-
 \section{Prevenzione dei rischi}
+Durante l'analisi del progetto lo stagista ha individuato alcuni rischi in cui potrà incorrere.
+Nella lista seguente sono elencati i rischi e le soluzioni ideate.\\
 
-Durante la fase di analisi iniziale sono stati individuati alcuni possibili rischi a cui si potrà andare incontro.
-Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a tali rischi.\\
-
-\begin{risk}{Performance del simulatore hardware}
-    \riskdescription{le performance del simulatore hardware e la comunicazione con questo potrebbero risultare lenti o non abbastanza buoni da causare il fallimento dei test}
-    \risksolution{coinvolgimento del responsabile a capo del progetto relativo il simulatore hardware}
-    \label{risk:hardware-simulator} 
+\begin{risk}{Tempistiche ristrette}
+    \riskdescription{dopo un mese dall'inizio dello stage lo studente è stato riposizionato sul progetto attuale scartando il progetto precedente e trovandosi dunque con meno settimane a disposizione per la produzione}
+    \risksolution{Ridimensionamento delle attività e richieste di supporto più frequenti}
+    \label{risk: tempistiche ristrette} 
 \end{risk}
 
-\section{Requisiti e obiettivi}
+\begin{risk}{Conoscenze insufficienti nell'ambito dell'intelligenza artificiale}
+    \riskdescription{lo studente ha la consapevolezza di non avere acquisito conoscenze nella materia oggetto di analisi}
+    \risksolution{auto apprendimento tramite tutorial on-line e richiesta di coinvolgimento di colleghi più esperti nell'ambito}
+    \label{risk:conoscenze scarse} 
+\end{risk}
 
+\begin{risk}{Potenza hardware insufficiente}
+    \riskdescription{l'addestramento dell'intelligenza artificiale richiede l'utilizzo di potenti GPU di cui l'hardware fornito dall'azienda è sprovvisto}
+    \risksolution{la soluzione pensata con il tutor aziendale prevede l'utilizzo del server aziendale per l'addestramento; il training su CPU richiede più tempo ma si ha il vantaggio di poter lavorare sul proprio PC parallelamente}
+    \label{risk:hardware} 
+\end{risk}
+
+\newpage
+
+\section{Obiettivi}
+Gli obiettivi hanno lo scopo di delineare il percorso che lo studente deve affrontare per portare a termine il progetto nella maniera desiderata dall'azienda.
+Sono suddivisibili in:
+\begin{itemize}
+    \item \textbf{O}: obbligatori
+    \item \textbf{D}: desiderabili
+    \item \textbf{F}: facoltativi
+\end{itemize}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{0.8\textwidth}{|c|X|}
+    \hline
+    \textbf{Codice} & \textbf{Descrizione} \\
+    \hline
+    O01 & Implementare un sistema robusto per la cattura degli screenshot, assicurando l’integrazione con il
+        database per l’archiviazione e l’analisi. \\
+    \hline
+    O02 & Garantire la creazione di una documentazione tecnica completa che supporti sia l’uso che la manutenzione  del sistema sviluppato. \\
+    \hline
+    O03 & Creazione di un IA in grado di suddividere in cluster i siti web. \\
+    \hline
+    O04 & Creazione di un IA classificativa in grado di assegnare un punteggio ai siti-web analizzati.\\
+    \hline
+    D01 & Aggiungere la valutazione creata dall'IA nel database utilizzato dal CRM.\\
+    \hline
+    D02 & Automatizzare l'invio di e-mail alle aziende che hanno ottenuto una valutazione scarsa.\\
+    \hline
+    F01 & Migliorare la raccolta dei dati delle aziende dal web\\
+    \hline
+    F02 & Aggiornare automaticamente la valutazione dei siti web\\
+    \hline
+    \end{tabularx}
+    \caption{Tabella degli obiettivi}
+    \end{table}
 
 \section{Pianificazione}
