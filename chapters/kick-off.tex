@@ -1,11 +1,36 @@
-\chapter{Descrizione dello stage}
+\chapter{Il progetto}
 \label{cap:descrizione-stage}
 
-\intro{Breve introduzione al capitolo}\\
+\intro{Questo capitolo contiene le informazioni preliminari che sono state fornite allo studente e le misure preventivie adottate per iniziare la produzione.}\\
 
-\section{Introduzione al progetto}
+\section{Analisi del progetto}
 
-\section{Analisi preventiva dei rischi}
+Il progetto si basa sull'integrazione di un nuovo workflow all'interno di un applicativo preesistente; lo studente deve occuparsi dello sviluppo di una soluzione in grado di migliorare il reach dell'azienda.
+
+\subsection{SalesCRM}
+SalesCRM è il CRM che viene utilizzato dai commerciali interni all'azienda; contiene tutte le informazioni relative ai contatti che sono stati raggiunti dal reparto vendite. 
+Gli utenti sono in grado di immagazzinare i dati raccolti su clienti e potenziali clienti tramite un interfaccia intuitiva sviluppata utilizzando Laravel e Filament.
+
+\subsubsection{Componenti principali}
+\begin{itemize}
+    \item Modulo per l'aggiunta manuale di contatti
+    \item Modulo del calendario: utile per pianificare appuntamenti e visite.
+    \item Modulo della mappa: utile per conoscere il posizionamento dei clienti e organizzare incontri locali.
+    CHIEDERE ALTRE FUNZIONALITA' E SCREEN A MATTEO 
+\end{itemize}
+
+\subsection{Integrazione}
+\begin{itemize}
+    \item Raccolta di dati: l'applicativo ha una FUNZIONALITà di WEB-SCRAPING che raccoglie i link dei siti web di tutti i potenziali clienti, il compito del tirocinante è quello di creare un workflow automatico che si integri con il web-scraper per acquisire screenshot delle varie pagine del sito web. 
+    \item Clusterizzazione: la fase successiva alla raccolta dei dati consiste nello sviluppo di una IA addestrata in maniera non supervisionata che sia in grado di suddividere le varie immagini in clusters, differenziati in base alle caratteristiche riconosciute in ogni sito. 
+    \item IA classificativa: in seguito alla raccolta di un dataset di dimensioni congrue si procede alla suddivisione manuale degli screenshot precedentemente clusterizzati su una base qualitativa (siti migliorabili e siti ottimi); questo processo viene svolto con l'ottica dell'addestramento di una IA classificativa.
+    L'IA addestrata in maniera supervisionata ha l'obiettivo di affidare un punteggio in valori centesimali a ogni sito. 
+    \item Invio di e-mail automatizzato: l'automazione della posta elettronica procede con l'invio di e-mail personalizzate ai proprietari dei siti web che hanno ricevuto una valutazione scarsa.
+\end{itemize}
+
+
+
+\section{Prevenzione dei rischi}
 
 Durante la fase di analisi iniziale sono stati individuati alcuni possibili rischi a cui si potrà andare incontro.
 Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a tali rischi.\\
