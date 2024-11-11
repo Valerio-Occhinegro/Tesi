@@ -5,7 +5,7 @@
 
 \section{Analisi del progetto}
 
-Il progetto si basa sull'integrazione di un nuovo workflow all'interno di un applicativo preesistente; lo studente deve occuparsi dello sviluppo di una soluzione in grado di migliorare il reach dell'azienda.
+Il progetto si basa sull'integrazione di un nuovo workflow all'interno di un applicativo preesistente; lo studente deve occuparsi dello sviluppo di una soluzione in grado di migliorare la portata dell'azienda per quanto riguarda il raggiungimento di nuovi clienti.
 
 \subsection{SalesCRM}
 SalesCRM è il CRM che viene utilizzato dai commerciali interni all'azienda; contiene tutte le informazioni relative ai contatti che sono stati raggiunti dal reparto vendite. 
@@ -13,15 +13,37 @@ Gli utenti sono in grado di immagazzinare i dati raccolti su clienti e potenzial
 
 \subsubsection{Componenti principali}
 \begin{itemize}
-    \item Modulo per l'aggiunta manuale di contatti
-    \item Modulo del calendario: utile per pianificare appuntamenti e visite.
-    \item Modulo della mappa: utile per conoscere il posizionamento dei clienti e organizzare incontri locali.
-    CHIEDERE ALTRE FUNZIONALITA' E SCREEN A MATTEO 
+    \item Home page contenente grafici informativi.
+    
+    \begin{figure}[!h] 
+        \centering 
+        \includegraphics[width=0.8\columnwidth]{progetto/Home_page.png} 
+        \caption{Home page di SalesCRM}
+      \end{figure}
+
+    \item Il modulo contenente il calendario è utile per pianificare appuntamenti e visite.
+    
+    \begin{figure}[!h] 
+        \centering 
+        \includegraphics[width=0.8\columnwidth]{progetto/Calendario.png} 
+        \caption{Calendario contenuto all'interno di SalesCRM}
+      \end{figure}
+
+    \item La sezione della della mappa viene sfruttato per conoscere il posizionamento dei clienti e organizzare incontri locali.
+    
+    \begin{figure}[!h] 
+        \centering 
+        \includegraphics[width=0.8\columnwidth]{progetto/Mappa.png} 
+        \caption{Mappa contenuta all'interno di SalesCRM}
+      \end{figure}
+    
 \end{itemize}
+
+\newpage
 
 \subsection{Integrazione}
 \begin{itemize}
-    \item Raccolta di dati: l'applicativo ha una FUNZIONALITà di WEB-SCRAPING che raccoglie i link dei siti web di tutti i potenziali clienti, il compito del tirocinante è quello di creare un workflow automatico che si integri con il web-scraper per acquisire screenshot delle varie pagine del sito web. 
+    \item Raccolta di dati: l'applicativo ha una funzionalità di web-scraping che raccoglie i link dei siti web di tutti i potenziali clienti, il compito del tirocinante è quello di creare un workflow automatico che si integri con il web-scraper per acquisire screenshot delle varie pagine del sito web. 
     \item Clusterizzazione: la fase successiva alla raccolta dei dati consiste nello sviluppo di una IA addestrata in maniera non supervisionata che sia in grado di suddividere le varie immagini in clusters, differenziati in base alle caratteristiche riconosciute in ogni sito. 
     \item IA classificativa: in seguito alla raccolta di un dataset di dimensioni congrue si procede alla suddivisione manuale degli screenshot precedentemente clusterizzati su una base qualitativa (siti migliorabili e siti ottimi); questo processo viene svolto con l'ottica dell'addestramento di una IA classificativa.
     L'IA addestrata in maniera supervisionata ha l'obiettivo di affidare un punteggio in valori centesimali a ogni sito. 
