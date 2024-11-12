@@ -9,30 +9,33 @@ Il ciclo di vita del software è l'insieme delle attività e dei processi che tu
 L'adozione di un modello di ciclo di vita è fondamentale per rispettare le scadenze, rimanere all'interno del budget ed evitare conflitti all'interno e all'esterno del team.
 
 \subsection{Filosofia Agile}
-Per favorire la collaborazione l'azienda si affida alla filosofia Agile e in particolare al modello scrum che ha come unità fondamentale lo "sprint" ossia un periodo di tempo breve (1 settimana) che viene utilizzato per sviluppare e testare nuove funzionalità; grazie a questi avanzamenti rapidi è possibile fornire codice flessibile e rapidamente adattabile alle nuove esigenze. 
+Per favorire la collaborazione l'azienda si affida alla filosofia Agile e in particolare al modello scrum (Fig.~\ref{fig:schema-scrum}) che ha come unità fondamentale lo "sprint" ossia un periodo di tempo breve (1 settimana) che viene utilizzato per sviluppare e testare nuove funzionalità; grazie a questi avanzamenti rapidi è possibile fornire codice flessibile e rapidamente adattabile alle nuove esigenze. 
 
 \begin{figure}[!h] 
     \centering 
     \includegraphics[width=0.6\columnwidth]{processi/scrum.png} 
     \caption{Schema del modello scrum}
+    \label{fig:schema-scrum}
   \end{figure}
   
 \subsection{Tecnologie di supporto}
 \begin{itemize}
-    \item Plane: è un ITS (Issue Tracking System) utilizzato per monitorare l'avanzamento del progetto e per assegnare a ciascun membro i compiti da effettuare; consente a tutte le parti coinvolte di avere una visione di insieme su quello che bisogna realizzare per portare a compimento lo sviluppo. In particolare è stato scelto perché altamente personalizzabile e per la sua natura open-source.
+    \item Plane (Fig.~\ref{fig:logo-plane}): è un ITS (Issue Tracking System) utilizzato per monitorare l'avanzamento del progetto e per assegnare a ciascun membro i compiti da effettuare; consente a tutte le parti coinvolte di avere una visione di insieme su quello che bisogna realizzare per portare a compimento lo sviluppo. In particolare è stato scelto perché altamente personalizzabile e per la sua natura open-source.
     
     \begin{figure}[!h] 
         \centering 
         \includegraphics[width=0.6\columnwidth]{processi/plane-logo.png} 
         \caption{Logo di Plane}
+        \label{fig:logo-plane}
       \end{figure}
 
-    \item Telegram: è una piattaforma di messaggistica completa con molte funzionalità, viene sfruttata dall'azienda per coordinare i vari team di lavoro tramite l'ausilio di chat di gruppo. Fornisce inoltre molte funzionalità avanzate come bot utili per i più svariati casi d'uso.
+    \item Telegram (Fig.~\ref{fig:logo-telegram}): è una piattaforma di messaggistica completa con molte funzionalità, viene sfruttata dall'azienda per coordinare i vari team di lavoro tramite l'ausilio di chat di gruppo. Fornisce inoltre molte funzionalità avanzate come bot utili per i più svariati casi d'uso.
     
     \begin{figure}[!h] 
         \centering 
         \includegraphics[width=0.6\columnwidth]{processi/telegram-logo.png} 
         \caption{Logo di Telegram}
+        \label{fig:logo-telegram}
       \end{figure}
 \end{itemize}
 
@@ -42,21 +45,23 @@ La gestione della configurazione è il processo tramite il quale è possibile id
 \subsection{Tecnologie di supporto}
 Le tencnologie utilizzate per il versionamento del prodotto sono:
 \begin{itemize}
-    \item Git: è un DVCS(Distributed Version Controll System) ampiamente diffuso che consente di gestire e monitorare i cambiamenti del codice e della documentazione. Questo strumento è fondamentale per avere una storia completa dello sviluppo da poter sfruttare in caso di necessità. Il codice viene inserito all'interno di un repository, ossia una cartella che contiene tutti i file relativi al progetto, dove è possibile salvare ogni cambiamento tramite commit. Il commit segnala ogni modifica e la data in cui viene attuata, è dunque sufficiente spostarsi tra i vari commit per tornare ad una versione più o meno aggiornata.  
+    \item Git (Fig.~\ref{fig:logo-git}): è un DVCS (Distributed Version Controll System) ampiamente diffuso che consente di gestire e monitorare i cambiamenti del codice e della documentazione. Questo strumento è fondamentale per avere una storia completa dello sviluppo da poter sfruttare in caso di necessità. Il codice viene inserito all'interno di un repository, ossia una cartella che contiene tutti i file relativi al progetto, dove è possibile salvare ogni cambiamento tramite commit. Il commit segnala ogni modifica e la data in cui viene attuata, è dunque sufficiente spostarsi tra i vari commit per tornare ad una versione più o meno aggiornata.  
     
     \begin{figure}[!h] 
         \centering 
         \includegraphics[width=0.6\columnwidth]{processi/git-logo.png} 
         \caption{Logo di Git}
+        \label{fig:logo-git}
       \end{figure}
 
-    \item Gitea: è un servizio che supporta le repository di Git, è simile a GitHub, Bitbucket e GitLab, ma ha il vantaggio di essere self-hosted. 
+    \item Gitea (Fig.~\ref{fig:logo-gitea}): è un servizio che supporta le repository di Git, è simile a GitHub, Bitbucket e GitLab, ma ha il vantaggio di essere self-hosted. 
     Essendo tutti i repository aziendali mantenuti sul server interno, le comunicazioni atte al versionamento hanno risposta molto rapida.
 
     \begin{figure}[!h] 
         \centering 
         \includegraphics[width=0.6\columnwidth]{processi/gitea-logo.png} 
         \caption{Logo di Gitea}
+        \label{fig:logo-gitea}
       \end{figure}
 \end{itemize}
 
@@ -65,7 +70,7 @@ Le tencnologie utilizzate per il versionamento del prodotto sono:
 \subsubsection{Regole di branch e commit}
 Per standardizzare l'utilizzo delle tecnologie di versionamento l'azienda adotta due convenzioni:
 \begin{itemize}
-    \item Git Flow: è un modello di branching ideato per avere un miglior controllo delle release.
+    \item Git Flow (Fig.~\ref{fig:schema-gitflow}): è un modello di branching ideato per avere un miglior controllo delle release.
     \item Conventional Commits: è una specifica basata su regole, che consentono una facile lettura dei commit sia da parte di utenti che da parte di strumenti automatici. 
 \end{itemize}
 
@@ -73,6 +78,7 @@ Per standardizzare l'utilizzo delle tecnologie di versionamento l'azienda adotta
     \centering 
     \includegraphics[width=0.9\columnwidth]{processi/gitflow.png} 
     \caption{Esempio di Git Flow }
+    \label{fig:schema-gitflow}
   \end{figure}
 
 

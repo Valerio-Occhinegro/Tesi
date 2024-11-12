@@ -9,32 +9,35 @@ Il progetto si basa sull'integrazione di un nuovo workflow all'interno di un app
 
 \subsection{SalesCRM}
 SalesCRM è il CRM che viene utilizzato dai commerciali interni all'azienda; contiene tutte le informazioni relative ai contatti che sono stati raggiunti dal reparto vendite. 
-Gli utenti sono in grado di immagazzinare i dati raccolti su clienti e potenziali clienti tramite un interfaccia intuitiva sviluppata utilizzando Laravel e Filament.
+Gli utenti sono in grado di immagazzinare i dati raccolti su clienti e potenziali clienti tramite un interfaccia intuitiva sviluppata utilizzando \nameref{tec:Laravel} e \nameref{tec:Filament}.
 
 \subsubsection{Componenti principali}
 \begin{itemize}
-    \item Home page contenente grafici informativi.
+    \item Home page (Fig.~\ref{fig:salesCRM-home}) contenente grafici informativi.
     
     \begin{figure}[!h] 
         \centering 
         \includegraphics[width=0.8\columnwidth]{progetto/Home_page.png} 
         \caption{Home page di SalesCRM}
+        \label{fig:salesCRM-home}
       \end{figure}
 
-    \item Il modulo contenente il calendario è utile per pianificare appuntamenti e visite.
+    \item Il modulo contenente il calendario (Fig.~\ref{fig:salesCRM-calendario}) è utile per pianificare appuntamenti e visite.
     
     \begin{figure}[!h] 
         \centering 
         \includegraphics[width=0.8\columnwidth]{progetto/Calendario.png} 
         \caption{Calendario contenuto all'interno di SalesCRM}
+        \label{fig:salesCRM-calendario}
       \end{figure}
 
-    \item La sezione della della mappa viene sfruttato per conoscere il posizionamento dei clienti e organizzare incontri locali.
+    \item La sezione della mappa (Fig.~\ref{fig:salesCRM-mappa}) viene sfruttato per conoscere il posizionamento dei clienti e organizzare incontri locali.
     
     \begin{figure}[!h] 
         \centering 
         \includegraphics[width=0.8\columnwidth]{progetto/Mappa.png} 
         \caption{Mappa contenuta all'interno di SalesCRM}
+        \label{fig:salesCRM-mappa}
       \end{figure}
     
 \end{itemize}
@@ -50,27 +53,47 @@ Gli utenti sono in grado di immagazzinare i dati raccolti su clienti e potenzial
     \item Invio di e-mail automatizzato: l'automazione della posta elettronica procede con l'invio di e-mail personalizzate ai proprietari dei siti web che hanno ricevuto una valutazione scarsa, per offrire loro un servizio di miglioramento.
 \end{itemize}
 
-\section{Prevenzione dei rischi}
+\section{Analisi e gestione dei rischi}
 Durante l'analisi del progetto lo stagista ha individuato alcuni rischi in cui potrà incorrere.
 Nella lista seguente sono elencati i rischi e le soluzioni ideate.\\
 
-\begin{risk}{Tempistiche ristrette}
-    \riskdescription{dopo un mese dall'inizio dello stage lo studente è stato riposizionato sul progetto attuale scartando il progetto precedente e trovandosi dunque con meno settimane a disposizione per la produzione}
-    \risksolution{Ridimensionamento delle attività e richieste di supporto più frequenti}
+\begin{risk}{Rimodulazione dell'attività}
+    \riskdescription{dopo un mese dall’inizio dello stage lo studente è stato riposizionato sul progetto attuale scartando il progetto precedente e trovandosi dunque con meno settimane a disposizione per la produzione}
+    \risksolution{ridimensionamento delle attività e richieste di supporto più frequenti}
     \label{risk: tempistiche ristrette} 
 \end{risk}
 
-\begin{risk}{Conoscenze insufficienti nell'ambito dell'intelligenza artificiale}
-    \riskdescription{lo studente ha la consapevolezza di non avere acquisito conoscenze nella materia oggetto di analisi}
+\begin{risk}{Approccio sperimentale}
+    \riskdescription{il progetto prevede dei contributi originali e sperimentali per cui non sono disponibili soluzioni già pronte}
     \risksolution{auto apprendimento tramite tutorial on-line e richiesta di coinvolgimento di colleghi più esperti nell'ambito}
     \label{risk:conoscenze scarse} 
 \end{risk}
 
-\begin{risk}{Potenza hardware insufficiente}
-    \riskdescription{l'addestramento dell'intelligenza artificiale richiede l'utilizzo di potenti GPU di cui l'hardware fornito dall'azienda è sprovvisto}
-    \risksolution{la soluzione pensata con il tutor aziendale prevede l'utilizzo del server aziendale per l'addestramento; il training su CPU richiede più tempo ma si ha il vantaggio di poter lavorare sul proprio PC parallelamente}
+\begin{risk}{Costo dell'Addestramento}
+    \riskdescription{l'addestramento dell'intelligenza artificiale richiede l'utilizzo di potenti GPU di cui spesso l'hardware a disposizione è sprovvisto}
+    \risksolution{utilizzo del server aziendale per l’addestramento su CPU, ottenendo un compromesso tra costi e tempo di addestramento}
     \label{risk:hardware} 
 \end{risk}
+
+\begin{risk}{Quantità di dati di training insufficiente}
+    \riskdescription{l'IA necessita una grande quantità di dati in input per effettuare un training efficace}
+    \risksolution{aumento manuale del dataset e ricerca di dataset già pronti on-line}
+    \label{risk:hardware} 
+\end{risk}
+
+\begin{risk}{Risultati della clusterizzazione non soddisfacenti}
+    \riskdescription{il clustering potrebbe risultare non conforme alle aspettative}
+    \risksolution{valutare la quantità di cluster da creare e sperimentare con altri metodi di clustering}
+    \label{risk:hardware} 
+\end{risk}
+
+\begin{risk}{Overfitting del modello}
+    \riskdescription{il modello IA fornisce valutazioni accurate solo per le immagini utilizzate durante il training}
+    \risksolution{sperimentare metodi per la risoluzione dell'overfit }
+    \label{risk:hardware} 
+\end{risk}
+
+
 
 \newpage
 
