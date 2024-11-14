@@ -1,4 +1,4 @@
-\chapter{Progettazione}
+\chapter{Progettazione e codifica}
 
 \label{cap:progettazione}
 
@@ -6,8 +6,23 @@
 L'obiettivo è pianificare in maniera chiara tutte le azioni che l'applicativo dovrà svolgere prima di passare effettivamente alla codifica.}
 
 \section{Architettura}
+L'architettura (Fig.~\ref{fig:schema-architettura})pensata prevede l'utilizzo di 4 componenti principali che si occupano di:
+\begin{enumerate}
+    \item Acquisire gli screenshot.
+    \item Effettuare il clustering degli screenshot acquisiti.
+    \item Valutare i siti web.
+    \item Inviare e-mail promozionali.
+\end{enumerate}
 
-\section{Database}
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{progettazione/schema-architettura.png} 
+    \caption{Schema architetturale del progetto}
+    \label{fig:schema-architettura}
+  \end{figure}
+
+
+\newpage
 
 \section{Cattura immagini}
 
@@ -16,3 +31,5 @@ L'obiettivo è pianificare in maniera chiara tutte le azioni che l'applicativo d
 \section{Valutazione}
 
 \section{Invio e-mail}
+
+\section{Database}
