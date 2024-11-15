@@ -6,7 +6,7 @@
 L'obiettivo è pianificare in maniera chiara tutte le azioni che l'applicativo dovrà svolgere prima di passare effettivamente alla codifica.}
 
 \section{Architettura}
-L'architettura (Fig.~\ref{fig:schema-architettura})pensata prevede l'utilizzo di 4 componenti principali che si occupano di:
+L'architettura (Fig.~\ref{fig:schema-architettura}) pensata prevede l'utilizzo di 4 componenti principali che si occupano di:
 \begin{enumerate}
     \item Acquisire gli screenshot.
     \item Effettuare il clustering degli screenshot acquisiti.
@@ -25,6 +25,18 @@ L'architettura (Fig.~\ref{fig:schema-architettura})pensata prevede l'utilizzo di
 \newpage
 
 \section{Cattura immagini}
+La prima fase del workflow (Fig.~\ref{fig:schema-cattura}) è composta da uno script Python che usufruisce della libreria Pyppeteer per acquisire gli screenshot dei siti contenuti nel database.
+Più precisamente un web-scraper già implementato raccoglie i link delle pagine web dei clienti potenziali, successivamente li carica nel database di SalesCRM, dove verranno infine letti dallo script.
+Per funzionare Pyppeteer necessita di chromium, dopo aver effettuato il controllo per verificare se esso sia presente o meno procede con la lettura dei link. 
+L'automazione apre ogni indirizzo, aspetta qualche secondo e scatta uno screenshot. 
+Tutte le immagini vengono poi convertite in formato Base64 e salvate nel database.
+
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=0.9\columnwidth]{progettazione/schema-architettura.png} 
+  \caption{Schema della fase di cattura}
+  \label{fig:schema-cattura}
+\end{figure}
 
 \section{Clustering}
 
