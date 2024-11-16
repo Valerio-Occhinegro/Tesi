@@ -42,9 +42,9 @@ Tutte le immagini vengono poi convertite in formato Base64 e salvate nel databas
 
 \section{Clustering}
 \subsection{Preparazione delle immagini}
-In seguito alla cattura le immagini vengono lette dal database e convertite in un formato utilizzabile dagli algoritmi di machine learning.
+In seguito alla cattura le immagini vengono lette dal database e convertite in un formato utilizzabile dagli algoritmi di machine learning (Fig.~\ref{fig:schema-resize}).
 Quindi si passa da un formato Base64 a un formato raster che viene poi nuovamente convertito in un tensore multidimensionale adatto per essere processato.
-In questo caso le dimensioni del tensore sono le seguenti (224*224*3):
+In questo caso le dimensioni del tensore (Fig.~\ref{fig:schema-tensore}) sono le seguenti  (224*224*3):
 \begin{itemize}
   \item Altezza dell'immagine
   \item Larghezza dell'immagine 
@@ -52,28 +52,78 @@ In questo caso le dimensioni del tensore sono le seguenti (224*224*3):
 \end{itemize} 
 Ogni cella viene normalizzata, dividendo il suo contenuto per 255, portando dunque il valore in un intervallo compreso tra 0 e 1.
 
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=0.7\columnwidth]{progettazione/schema-resize.png} 
+  \caption{Conversione e ridimensionamento}
+  \label{fig:schema-resize}
+\end{figure}
+
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=0.5\columnwidth]{progettazione/schema-tensore.png} 
+  \caption{Struttura del tensore}
+  \label{fig:schema-tensore}
+\end{figure}
+
+\newpage
+
+
 \subsection{Estrazione delle features}
-Per ottenere un dato utilizzabile in modo efficace dall'algoritmo di clustering è necessario modificare ulteriormente le immagini riducendole a un set di features.
-Per adempire a questo compito viene utilizzato un CNN Convolutional Neural Network pre-addestrato chiamato ResNet50.
+Per ottenere un dato utilizzabile in modo efficace dall'algoritmo di clustering è necessario modificare ulteriormente le immagini riducendole a un set di features (Fig.~\ref{fig:featuremaps}).
+Per adempire a questo compito viene utilizzato un CNN Convolutional Neural Network pre-addestrato chiamato ResNet50 (Fig.~\ref{fig:schema-resnet}).
 Il modello viene caricato senza i top layers, ossia gli strati densi addetti alla classificazione, per sfruttare esclusivamente la sua abilità di riduzione in features.
 
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=0.7\columnwidth]{progettazione/esempio-featuremaps.png} 
+  \caption{Esempio di featuremaps}
+  \label{fig:featuremaps}
+\end{figure}
+
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=0.9\columnwidth]{progettazione/schema-ResNet.png} 
+  \caption{Struttura di ResNet50}
+  \label{fig:schema-resnet}
+\end{figure}
+
+
+
 \subsection{Applicazione del clustering}
-Le features estratte dai layers convoluzionali vengono ridotte a uno stato bidimensionale sfruttando l'analisi dei componenti principali, successivamente viene applicato l'algoritmo dei K-means per l'effettiva suddivisione del dataset in clusters.
+Le features estratte dai layers convoluzionali vengono ridotte a uno stato bidimensionale sfruttando l'analisi dei componenti principali, successivamente viene applicato l'algoritmo dei K-means per l'effettiva suddivisione del dataset in clusters (Fig.~\ref{fig:clusters-resnet}).
 Le immagini vengono inserite, in base al cluster a loro assegnato, nelle rispettive cartelle di appartenenza.
 Questa operazione viene svolta per semplificare lo step successivo in cui lo sviluppatore deve preparare manualmente il dataset per l'addestramento supervisionato.
 
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=0.7\columnwidth]{progettazione/Clusters-resnet.png} 
+  \caption{Clustering effettuato utilizzando 20 clusters e 3000 immagini}
+  \label{fig:clusters-resnet}
+\end{figure}
+
+
 %come modello finale è stato scelto resnet 50 poichè più rapido da utilizzare, infatti non necessita di addestramento 
+
+\newpage
 
 \section{Valutazione}
 
 \subsection{Preparazione del dataset}
 Il programmatore visiona i clusters ottenuti precedentemente e verifica quali possono appartenere alle categorie "siti migliorabili" e "siti ottimi"; prepara due cartelle corrispondenti alle categorie e inserisce le immagini che reputa appartenere a ciascun dominio.
-Lo script prepara il dataset secondo la logica seguente:
+Lo script prepara il dataset (Fig.~\ref{fig:struttura-dataset}) secondo la logica seguente:
 \begin{itemize}
   \item Training, il 70\% delle immagini viene utilizzato per l'addestramento effettivo.
   \item Validation, il 15\% delle immagini viene utilizzato per ottimizzare i parametri del modello.
   \item Test, il 15\% delle immagini serve per valutare l'output del modello
 \end{itemize}
+
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=0.35\columnwidth]{progettazione/struttura-dataset.png} 
+  \caption{Struttura del dataset}
+  \label{fig:struttura-dataset}
+\end{figure}
 
 \subsection{Addestramento del modello}
 Viene caricato il modello pre-addestrato ResNet50 escludendo i top-layers, congelando i pesi e aggiungendo degli strati personalizzati per la classificazione.
