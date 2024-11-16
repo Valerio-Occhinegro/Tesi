@@ -62,16 +62,54 @@ Le features estratte dai layers convoluzionali vengono ridotte a uno stato bidim
 Le immagini vengono inserite, in base al cluster a loro assegnato, nelle rispettive cartelle di appartenenza.
 Questa operazione viene svolta per semplificare lo step successivo in cui lo sviluppatore deve preparare manualmente il dataset per l'addestramento supervisionato.
 
-
-
-
-
-
-
 %come modello finale è stato scelto resnet 50 poichè più rapido da utilizzare, infatti non necessita di addestramento 
 
 \section{Valutazione}
 
+\subsection{Preparazione del dataset}
+Il programmatore visiona i clusters ottenuti precedentemente e verifica quali possono appartenere alle categorie "siti migliorabili" e "siti ottimi"; prepara due cartelle corrispondenti alle categorie e inserisce le immagini che reputa appartenere a ciascun dominio.
+Lo script prepara il dataset secondo la logica seguente:
+\begin{itemize}
+  \item Training, il 70\% delle immagini viene utilizzato per l'addestramento effettivo.
+  \item Validation, il 15\% delle immagini viene utilizzato per ottimizzare i parametri del modello.
+  \item Test, il 15\% delle immagini serve per valutare l'output del modello
+\end{itemize}
+
+\subsection{Addestramento del modello}
+Viene caricato il modello pre-addestrato ResNet50 escludendo i top-layers, congelando i pesi e aggiungendo degli strati personalizzati per la classificazione.
+Gli strati di classificazione sono successivamente addestrati utilizzando come input le features ricavate dai layers convoluzionali congelati di ResNet50. 
+
+\subsection{Fine-tuning del modello}
+I layers convoluzionali vengono sbloccati e il modello viene addestrato nuovamente nella sua interezza utilizzando un learning rate ridotto in maniera tale da non modificare completamente i pesi del modello pre-addestrato.
+Il modello viene salvato e riutilizzato ogniqualvolta sia necessario.
+
+\subsection{Valutazione delle immagini}
+Le immagini presenti nel database vengono classificate dal modello e le valutazioni in centesimi vengono restituite.
+
 \section{Invio e-mail}
+Le valutazioni vengono lette dal database e tramite Laravel si procede all'invio di mail personalizzate alle aziende che dispongono di siti web che potrebbero essere ancora migliorati.
 
 \section{Database}
+Il database di SalesCRM contiene molte tabelle ma in questa sezione vengono descritte solo quelle utilizzate dal workflow.
+
+\subsection{Domains}
+Questa tabella contiene tutte i siti web (Fig.~\ref{fig:schema-domains}) delle aziende collezionate dal web-scraper e le informazioni a essi correlati.
+
+
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=0.9\columnwidth]{progettazione/schema-domains.png} 
+  \caption{Schema della tabella Domains}
+  \label{fig:schema-domains}
+\end{figure}
+
+
+\subsection{Pages}
+Contiene i link a tutte le pagine (Fig.~\ref{fig:schema-pages}) di ciascun dominio.
+
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=0.9\columnwidth]{progettazione/schema-pages.png} 
+  \caption{Schema della tabella Pages}
+  \label{fig:schema-pages}
+\end{figure}
