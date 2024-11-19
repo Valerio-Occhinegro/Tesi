@@ -32,8 +32,7 @@ La prima fase del workflow (Fig.~\ref{fig:schema-cattura}) è composta da uno sc
 Più precisamente un web-scraper già implementato raccoglie i link delle pagine web dei clienti potenziali, successivamente li carica nel database di SalesCRM, dove verranno infine letti dallo script.
 Per funzionare Pyppeteer necessita di chromium, dopo aver effettuato il controllo per verificare se esso sia presente o meno procede con la lettura dei link. 
 L'automazione apre ogni indirizzo, aspetta qualche secondo e scatta uno screenshot. 
-Tutte le immagini vengono poi convertite in formato Base64 e salvate nel database.
-La conversione in Base64 viene sfruttata perché la codifica di un immagine in stringa consente il salvataggio diretto nelle tabelle.
+Tutte le immagini vengono poi convertite in formato Base64 per adattarsi alle tabelle già esistenti e salvate nel database.
 
 \begin{figure}[!h] 
   \centering 
@@ -44,10 +43,51 @@ La conversione in Base64 viene sfruttata perché la codifica di un immagine in s
 
 \newpage
 
+\section{Studio preliminare per l'estrazione delle feature}
+L'estrazione delle feature è una fase fondamentale e necessita pertanto di uno studio più approfondito.
+
+\subsection{Tentativi con autoencoder}
+Gli autoencoder sono stati utilizzati inizialmente poiché si pensava che la soluzione migliore fosse la creazione di un modello CNN che si adattasse completamente alle feature presenti nei siti web, ma si è rivelato particolarmente difficile per i motivi seguenti:
+\begin{itemize}
+  \item Numero elevato di epoche di addestramento.
+  \item Studio della quantità e tipologia degli strati.
+  \item Bilanciamento arduo tra dimensioni accettabili e memoria a disposizione.
+\end{itemize}
+
+\subsubsection{Autoencoder con soli strati densi}
+Il primo tentativo è stato effettuato utilizzando un autoencoder che sfrutta esclusivamente layer densi, questo metodo nonostante abbia portato a dei risultati si è rivelato problematico visto che per funzionare in maniera efficiente, senza richiedere una GPU troppo prestante, necessita di immagini in bianco e nero di dimensioni ridotte a 128*128 (Fig.~\ref{fig:dense-ricostruita}).
+
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=1\columnwidth]{progettazione/dense_200Immagini_150Epoche_10BatchSize_BW.png} 
+  \caption{Ricostruzione immagine ottenuta dal bottleneck con 150 epoche di addestramento}
+  \label{fig:dense-ricostruita}
+\end{figure}
+
+\subsubsection{Autoencoder con strati convoluzionali}
+L'autoencoder con strati convoluzionali ha consentito un netto miglioramento delle prestazioni e un consumo inferiore della memoria tali da poter aumentare le dimensioni delle immagini e implementare nuovamente l'utilizzo del colore.
+Le modifiche non sono state comunque sufficienti per avere un esperienza di utilizzo solida.
+Viene sotto riportata un immagine in bianco e nero di dimensioni 256*256 per comparare con il modello precedente (Fig.~\ref{fig:conv-ricostruita}).
+
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=1\columnwidth]{progettazione/Conv_BW_img_dim256Epochs500Batch32Images5000.png} 
+  \caption{Ricostruzione immagine ottenuta dal bottleneck dell'autoencoder convoluzionale}
+  \label{fig:conv-ricostruita}
+\end{figure}
+
+\subsection{Modelli pre-addestrati}
+L'utilizzo di un modello pre-addestrato consente di evitare la fase di addestramento e la complessa ingegnerizzazione di una rete neurale, per questo motivo l'utilizzo degli autoencoder è stato scartato.
+Il modello consigliato dal tutor è ResNet50, la scelta viene avvalorata dalle motivazioni riportate nell'articolo\footcite{site:why-resnet}:
+\begin{itemize}
+  \item Facillità di addestramento.
+  \item Bilanciamento tra performance ed efficienza rispetto ad altri modelli della stessa famiglia.
+  \item Risultati simili o migliori utilizzando meno risorse rispetto alla famiglia VGGNet. 
+\end{itemize}
+
 \section{Clustering}
 \subsection{Preparazione delle immagini}
 In seguito alla cattura le immagini vengono lette dal database e convertite in un formato utilizzabile dagli algoritmi di machine learning (Fig.~\ref{fig:schema-resize}).
-%Quindi si passa da un formato Base64 a un formato raster che viene poi nuovamente convertito in un tensore multidimensionale adatto per essere processato.
 Per velocizzare le operazioni in fase di addestramento tutte le immagini vengono scaricate dal database e convertite in formato PNG, poiché le librerie utilizzate necessitano di dati raster per funzionare, successivamente le immagini salvate nella memoria del PC vengono processate in maniera tale da essere adatte all'utilizzo da parte di ResNet50.
 In questo caso le dimensioni dei tensori richieste specificatamente dal modello (Fig.~\ref{fig:schema-tensore}) sono le seguenti (224*224*3):
 \begin{itemize}
@@ -77,10 +117,10 @@ Inoltre ogni cella contiene valori compresi tra 0 e 255, per facilitare le opera
 \newpage
 
 
-\subsection{Estrazione delle features}
-Per ottenere un dato utilizzabile in modo efficace dall'algoritmo di clustering è necessario modificare ulteriormente le immagini riducendole a un set di features (Fig.~\ref{fig:featuremaps}).
+\subsection{Estrazione delle feature}
+Per ottenere un dato utilizzabile in modo efficace dall'algoritmo di clustering è necessario modificare ulteriormente le immagini riducendole a un set di feature (Fig.~\ref{fig:featuremaps}).
 Per adempire a questo compito viene utilizzato un CNN Convolutional Neural Network pre-addestrato chiamato ResNet50 (Fig.~\ref{fig:schema-resnet}).
-Il modello viene caricato senza i top layers, ossia gli strati densi addetti alla classificazione, per sfruttare esclusivamente la sua abilità di riduzione in features.
+Il modello viene caricato senza i top layer, ossia gli strati densi addetti alla classificazione, per sfruttare esclusivamente la sua abilità di riduzione in feature.
 
 \begin{figure}[!h] 
   \centering 
@@ -99,7 +139,7 @@ Il modello viene caricato senza i top layers, ossia gli strati densi addetti all
 
 
 \subsection{Applicazione del clustering}
-Le features estratte dai layers convoluzionali vengono ridotte a uno stato bidimensionale sfruttando l'analisi dei componenti principali, in questa maniera è possibile visualizzare i risultati del clustering su un grafico cartesiano, ridurre i tempi di calcolo e aumentare l'accuratezza delle predizioni; ma al costo di una ovvia perdita di informazioni.
+Le feature estratte dai layer convoluzionali vengono ridotte a uno stato bidimensionale sfruttando l'analisi dei componenti principali, in questa maniera è possibile visualizzare i risultati del clustering su un grafico cartesiano, ridurre i tempi di calcolo e aumentare l'accuratezza delle predizioni; ma al costo di una ovvia perdita di informazioni.
 Successivamente viene applicato l'algoritmo dei K-means per l'effettiva suddivisione del dataset in clusters (Fig.~\ref{fig:clusters-resnet}).
 Le immagini vengono inserite, in base al cluster a loro assegnato, nelle rispettive cartelle di appartenenza.
 Questa operazione viene svolta per semplificare lo step successivo in cui lo sviluppatore deve preparare manualmente il dataset per l'addestramento supervisionato.
@@ -135,11 +175,11 @@ Lo script prepara il dataset (Fig.~\ref{fig:struttura-dataset}) secondo la logic
 \end{figure}
 
 \subsection{Addestramento del modello}
-Viene caricato il modello pre-addestrato ResNet50 escludendo i top-layers, congelando i pesi e aggiungendo degli strati personalizzati per la classificazione.
-Gli strati di classificazione sono successivamente addestrati utilizzando come input le features ricavate dai layers convoluzionali congelati di ResNet50. 
+Viene caricato il modello pre-addestrato ResNet50 escludendo i top-layer, congelando i pesi e aggiungendo degli strati personalizzati per la classificazione.
+Gli strati di classificazione sono successivamente addestrati utilizzando come input le feature ricavate dai layer convoluzionali congelati di ResNet50. 
 
 \subsection{Fine-tuning del modello}
-I layers convoluzionali vengono sbloccati e il modello viene addestrato nuovamente nella sua interezza utilizzando un learning rate ridotto in maniera tale da non modificare completamente i pesi del modello pre-addestrato.
+I layer convoluzionali vengono sbloccati e il modello viene addestrato nuovamente nella sua interezza utilizzando un learning rate ridotto in maniera tale da non modificare completamente i pesi del modello pre-addestrato.
 Il modello viene salvato e riutilizzato ogniqualvolta sia necessario.
 
 \subsection{Valutazione delle immagini}
