@@ -55,7 +55,15 @@ Gli autoencoder sono stati utilizzati inizialmente poiché si pensava che la sol
 \end{itemize}
 
 \subsubsection{Autoencoder con soli strati densi}
-Il primo tentativo è stato effettuato utilizzando un autoencoder che sfrutta esclusivamente layer densi, questo metodo nonostante abbia portato a dei risultati si è rivelato problematico visto che per funzionare in maniera efficiente, senza richiedere una GPU troppo prestante, necessita di immagini in bianco e nero di dimensioni ridotte a 128*128 (Fig.~\ref{fig:dense-ricostruita}).
+Il primo tentativo è stato effettuato utilizzando un autoencoder che sfrutta esclusivamente layer densi (Fig.~\ref{fig:schema-denso}), questo metodo nonostante abbia portato a dei risultati si è rivelato problematico visto che per funzionare in maniera efficiente, senza richiedere una GPU troppo prestante, necessita di immagini in bianco e nero di dimensioni ridotte a 128*128 (Fig.~\ref{fig:dense-ricostruita}).
+
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=0.6\columnwidth]{progettazione/autencoder_dense_layers.png} 
+  \caption{Autoencoder con strati densi}
+  \label{fig:schema-denso}
+\end{figure}
+
 
 \begin{figure}[!h] 
   \centering 
@@ -64,10 +72,20 @@ Il primo tentativo è stato effettuato utilizzando un autoencoder che sfrutta es
   \label{fig:dense-ricostruita}
 \end{figure}
 
+\newpage
+
 \subsubsection{Autoencoder con strati convoluzionali}
-L'autoencoder con strati convoluzionali ha consentito un netto miglioramento delle prestazioni e un consumo inferiore della memoria tali da poter aumentare le dimensioni delle immagini e implementare nuovamente l'utilizzo del colore.
+L'autoencoder con strati convoluzionali (Fig.~\ref{fig:schema-conv}) ha consentito un netto miglioramento delle prestazioni e un consumo inferiore della memoria tali da poter aumentare le dimensioni delle immagini e implementare nuovamente l'utilizzo del colore.
 Le modifiche non sono state comunque sufficienti per avere un esperienza di utilizzo solida.
 Viene sotto riportata un immagine in bianco e nero di dimensioni 256*256 per comparare con il modello precedente (Fig.~\ref{fig:conv-ricostruita}).
+
+\begin{figure}[!h] 
+  \centering 
+  \includegraphics[width=0.7\columnwidth]{progettazione/Convolutional_autoencoder.png} 
+  \caption{Autoencoder con strati convoluzionali}
+  \label{fig:schema-conv}
+\end{figure}
+
 
 \begin{figure}[!h] 
   \centering 
