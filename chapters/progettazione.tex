@@ -68,7 +68,7 @@ Il primo tentativo è stato effettuato utilizzando un autoencoder che sfrutta es
 \begin{figure}[!h] 
   \centering 
   \includegraphics[width=1\columnwidth]{progettazione/dense_200Immagini_150Epoche_10BatchSize_BW.png} 
-  \caption{Ricostruzione immagine ottenuta dal bottleneck con 150 epoche di addestramento}
+  \caption{Ricostruzione immagine ottenuta dal bottleneck dell'autoencoder a strati densi con 150 epoche di addestramento}
   \label{fig:dense-ricostruita}
 \end{figure}
 
@@ -77,7 +77,7 @@ Il primo tentativo è stato effettuato utilizzando un autoencoder che sfrutta es
 \subsubsection{Autoencoder con strati convoluzionali}
 L'autoencoder con strati convoluzionali (Fig.~\ref{fig:schema-conv}) ha consentito un netto miglioramento delle prestazioni e un consumo inferiore della memoria tali da poter aumentare le dimensioni delle immagini e implementare nuovamente l'utilizzo del colore.
 Le modifiche non sono state comunque sufficienti per avere un esperienza di utilizzo solida.
-Viene sotto riportata un immagine in bianco e nero di dimensioni 256*256 per comparare con il modello precedente (Fig.~\ref{fig:conv-ricostruita}).
+Viene sotto riportata un immagine in bianco e nero di dimensioni 256*256 ottenuta dal bottleneck dell'autoencoder per comparare con il modello precedente (Fig.~\ref{fig:conv-ricostruita}).
 
 \begin{figure}[!h] 
   \centering 
@@ -90,8 +90,45 @@ Viene sotto riportata un immagine in bianco e nero di dimensioni 256*256 per com
 \begin{figure}[!h] 
   \centering 
   \includegraphics[width=1\columnwidth]{progettazione/Conv_BW_img_dim256Epochs500Batch32Images5000.png} 
-  \caption{Ricostruzione immagine ottenuta dal bottleneck dell'autoencoder convoluzionale}
+  \caption{Ricostruzione immagine ottenuta dal bottleneck dell'autoencoder convoluzionale con 500 epoche di addestramento}
   \label{fig:conv-ricostruita}
+\end{figure}
+
+Un altro vantaggio dell'utilizzo di strati convoluzionali è la possibilità di visualizzare le feature map estratte da ciascun layer (Fig.~\ref{fig:conv-1}, Fig.~\ref{fig:conv-2}, Fig.~\ref{fig:conv-3}). Grazie a esse lo sperimentatore ha un'idea più chiara di quello che avviene all'interno dell'autoencoder.
+
+
+\begin{figure}[!htbp] 
+  \centering 
+  \includegraphics[width=0.6\columnwidth]{progettazione/feature_maps_layer_conv_1.png} 
+  \caption{Feature map estratte dal primo strato convoluzionale}
+  \label{fig:conv-1}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htbp] 
+  \centering 
+  \includegraphics[width=0.6\columnwidth]{progettazione/feature_maps_layer_conv_2.png} 
+  \caption{Feature map estratte dal secondo strato convoluzionale}
+  \label{fig:conv-2}
+\end{figure}
+
+\begin{figure}[!htbp] 
+  \centering 
+  \includegraphics[width=0.6\columnwidth]{progettazione/feature_maps_layer_conv_3.png} 
+  \caption{Feature map estratte dal terzo strato convoluzionale}
+  \label{fig:conv-3}
+\end{figure}
+
+\newpage
+Tramite l'utilizzo delle feature estratte dal bottleneck è possibile effettuare un clustering (Fig.~\ref{fig:cluster-conv})
+
+
+\begin{figure}[!htbp] 
+  \centering 
+  \includegraphics[width=0.7\columnwidth]{progettazione/Clusters_conv.png} 
+  \caption{Clustering effettuato utilizzando le feature estratte dall'autoencoder convoluzionale; 20 clusters e 3000 immagini}
+  \label{fig:cluster-conv}
 \end{figure}
 
 \newpage
@@ -167,7 +204,7 @@ Questa operazione viene svolta per semplificare lo step successivo in cui lo svi
 \begin{figure}[!h] 
   \centering 
   \includegraphics[width=0.7\columnwidth]{progettazione/Clusters-resnet.png} 
-  \caption{Clustering effettuato utilizzando 20 clusters e 3000 immagini}
+  \caption{Clustering effettuato utilizzando ResNet50; 20 clusters e 3000 immagini}
   \label{fig:clusters-resnet}
 \end{figure}
 
