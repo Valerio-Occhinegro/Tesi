@@ -34,7 +34,7 @@ Quindi è importante scegliere con cura il numero iniziale K da assegnare, per s
     \begin{figure}[!h] 
         \centering 
         \includegraphics[width=0.7\columnwidth]{teoria/elbow_method.png} 
-        \caption{Conversione e ridimensionamento}
+        \caption{Grafico rappresentante il metodo del gomito}
         \label{fig:gomito}
       \end{figure}
 
@@ -44,26 +44,70 @@ Quindi è importante scegliere con cura il numero iniziale K da assegnare, per s
 
 %dovresti spiegare come funziona realmente ma vediamo che dice il prof
 
-\subsubsection{PCA}
+\section{PCA}
+L'analisi dei componenti principali è un algoritmo non supervisionato in grado di estrarre le informazioni più rilevanti da dataset di grandi dimensioni, riducendo così la complessità del modello ed evitando che si presenti il fenomeno della "maledizione della dimensionalità"\footcite{site:PCA}.
+
+\subsection{Maledizione della dimensionalità}
+La maledizione della dimensionalità si verifica all'aumentare della dimensionalità dei dati: con l'aumentare delle dimensioni, il volume dello spazio aumenta in maniera esponenziale, rendendo difficile l'elaborazione da parte degli algoritmi di machine learning, che dovranno lavorare su dati molto sparsi con conseguenze negative per le prestazioni.
+
 \section{feature}
 
-
-
 \section{Deep learning}
+Il deep learning è un processo di machine learning che sfrutta nodi interconnessi tra di loro (anche chiamati neuroni) in una struttura a strati ispirata al cervello umano (da qui neural network).
+In genere consistono di un sistema adattivo utilizzato dai computer per imparare dagli errori commessi e automigliorarsi\footcite{site:rete-neurale}.
+
+\subsection{Apprendimento}
+Gli strati densi (dense layers) sono alla base della rete neurale e sono composti dai neuroni.
+Ogni layer è interconnesso con lo strato che lo precede e con quello successivo, in particolare ogni neurone dello strato è connesso a ogni neurone dello strato successivo.
+All'interno di una rete neurale sono presenti:
+\begin{itemize}
+    \item Input layer: riceve l'input che la rete deve elaborare.
+    \item Hidden layer: possono essere uno o più e si occupano della elaborazione del dato in input.
+    \item Output layer: mostra l'output dell'elaborazione
+\end{itemize}
+\subsubsection{Fasi di apprendimento}
+\begin{enumerate}
+    \item Inizializzazione: Pesi e bias sono inizializzati casualmente o con specifici metodi.
+    \item Forward Propagation: Gli input attraversano la rete per ottenere un output.
+    \item Calcolo della Perdita: La funzione di perdita misura l'errore.
+    \item Backward Propagation: Gradiente calcolato per aggiornare pesi e bias.
+    \item Aggiornamento dei Pesi: Basato sul gradiente e sul learning rate.
+    \item Ripetizione (Epoche): Il processo è ripetuto per molte epoche per ridurre progressivamente l'errore.
+\end{enumerate}
+L'importanza delle connessioni tra i neuroni è dettata dai pesi e dai bias
+la funzione di attivazione è una funzione matematica non lineare che viene applicata all'output di ogni neurone
+\section{epoche}
+\section{pesi}
+\section{activation function}
+\section{learning rate}
 
 \section{CNN}
 \subsection{Layer convoluzionali}
 
 \section{Autoencoder}
+L'autoencoder è un neural network in grado di comprimere il suo input e di ricostruirlo in maniera similare come output. \footcite[p.~499]{Goodfellow-et-al-2016}.
+L'architettura si compone di due parti principali:
+\begin{enumerate}
+    \item Encoder: comprime l'input riducendolo di dimensionalità (codifica).
+    \item Decoder: ricostruisce l'input inziale partendo dalla codifica fatta dall'encoder
+\end{enumerate}
+Il bottleneck o latent space contiene la codifica e sta nel mezzo delle due componenti; è il punto di arrivo del encoder e la partenza del decoder.
+
+\subsection{Funzionamento}
+\begin{enumerate}
+    \item L'encoder riceve un input \( x \) e lo codifica creando una funzione \( z= f(x) \)
+    \item Il bottleneck contiene la codifica \( z \)
+    \item Il decoder cerca di decodificare \( z \) tramite la funzione \( g \) ottenendo come output \( \hat{x} = g(z) \).
+\end{enumerate}
+
+Il processo di apprendimento ha come obiettivo minimizzare la loss function che misura la differenza tra input iniziale e output ricostruito dal decoder.
+\[ L(x, \hat{x}) = ||x - \hat{x}||^2 \]
+Nell'esempio viene utilizzata la MSE (Mean Squared Error).
+
+Ai fini del progetto la parte interessante dell'autoencoder è proprio l'encoder perchè comprime l'immagine in input lasciando un set di features nel bottleneck; che possono essere utilizzate successivamente per il clustering.
+
 
 \section{fine-tuning}
-
-
-\section{Loss functions}
-\section{epoche}
-\section{pesi}
-\section{activation function}
-\section{learning rate}
 
 
 
