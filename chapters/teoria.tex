@@ -59,30 +59,134 @@ In genere consistono di un sistema adattivo utilizzato dai computer per imparare
 \subsection{Apprendimento}
 Gli strati densi (dense layers) sono alla base della rete neurale e sono composti dai neuroni.
 Ogni layer è interconnesso con lo strato che lo precede e con quello successivo, in particolare ogni neurone dello strato è connesso a ogni neurone dello strato successivo.
+Tutti i collegamenti tra neuroni possiedono un peso che corrisponde a un valore numerico, tale valore determina la forza di ogni connessione ossia l'influenza che l'output di un neurone ha sull'input di un altro neurone. In parole semplici i pesi possono aumentare o diminuire l'importanza di una specifica informazione.
+{FORMULARE MEGLIO QUESTA PARTE, CERCARE NEGLI APPUNTI
+I bias sono dei valori associati all'output di ciascun neurone e servono a garantire della flessibilità durante l'apprendimento; con l'introduzione dei bias si aggiunge una soglia che consente di attivare il neurone 
+La funzione di attivazione la funzione di attivazione è una funzione matematica non lineare che viene applicata all'output di ogni neuronesfrutta per calcolare se il neurone deve attivarsi o meno 
+}
+
+\subsubsection{Struttura}
 All'interno di una rete neurale sono presenti:
 \begin{itemize}
     \item Input layer: riceve l'input che la rete deve elaborare.
     \item Hidden layer: possono essere uno o più e si occupano della elaborazione del dato in input.
     \item Output layer: mostra l'output dell'elaborazione
 \end{itemize}
-\subsubsection{Fasi di apprendimento}
-\begin{enumerate}
-    \item Inizializzazione: Pesi e bias sono inizializzati casualmente o con specifici metodi.
-    \item Forward Propagation: Gli input attraversano la rete per ottenere un output.
-    \item Calcolo della Perdita: La funzione di perdita misura l'errore.
-    \item Backward Propagation: Gradiente calcolato per aggiornare pesi e bias.
-    \item Aggiornamento dei Pesi: Basato sul gradiente e sul learning rate.
-    \item Ripetizione (Epoche): Il processo è ripetuto per molte epoche per ridurre progressivamente l'errore.
-\end{enumerate}
-L'importanza delle connessioni tra i neuroni è dettata dai pesi e dai bias
-la funzione di attivazione è una funzione matematica non lineare che viene applicata all'output di ogni neurone
-\section{epoche}
-\section{pesi}
-\section{activation function}
-\section{learning rate}
 
-\section{CNN}
+\subsubsection{Fasi di apprendimento} RISCRIVERE QUESTA PARTE E AGGIUNGERE UNO SCHEMA 
+%\begin{enumerate}
+%    \item Inizializzazione: Pesi e bias sono inizializzati casualmente o con specifici metodi.
+%    \item Forward Propagation: Gli input attraversano la rete per ottenere un output.
+%    \item Calcolo della Perdita: La funzione di perdita misura l'errore.
+%    \item Backward Propagation: Gradiente calcolato per aggiornare pesi e bias.
+%    \item Aggiornamento dei Pesi: Basato sul gradiente e sul learning rate.
+%    \item Ripetizione (Epoche): Il processo è ripetuto per molte epoche per ridurre %progressivamente l'errore.
+%\end{enumerate}
+
+\section{Convolutional neural network}
+Le reti neurali convoluzionali (CNN) sfruttano dei layer convoluzionali per eseguire la classificazione di dati tridimensionali, come ad esempio le classiche immagini raster.
 \subsection{Layer convoluzionali}
+I layer convoluzionali hanno come scopo l'estrazione di feature dalle immagini (texture, bordi, ecc...).
+\subsubsection{Funzionamento di un layer convoluzionale}
+Il kernel (filtro) è una matrice contenente dei pesi, che viene spostata lungo l'immagine effettuando una convoluzione in ogni posizione.
+Esempio con kernel di dimensioni 3x3:
+
+\begin{lstlisting}[language=Python, frame=none]
+    [ -1,  0,  1 ]
+    [ -1,  0,  1 ]
+    [ -1,  0,  1 ]
+\end{lstlisting}
+
+
+\begin{enumerate}
+    \item Posizionamento del filtro: il kernel viene inserito sulla prima zona 3x3 dell'immagine.
+    \item Moltiplicazione di ogni elemento: ogni peso presente nel kernel viene moltiplicato per il valore corrispondente contenuto nella porzione di immagine.
+        
+    \begin{lstlisting}[language=Python, frame=none]
+        PORZIONE DI IMMAGINE
+        [ 10, 20, 30 ]
+        [ 40, 50, 60 ]
+        [ 70, 80, 90 ]
+
+        PRODOTTO CON I PESI DEL KERNEL
+        (-1 * 10) + (0 * 20) + (1 * 30) +
+        (-1 * 40) + (0 * 50) + (1 * 60) +
+        (-1 * 70) + (0 * 80) + (1 * 90)
+            
+    \end{lstlisting}
+    \item Output della convoluzione: tutti i risultati delle moltiplicazioni vengono sommati tra di loro e il valore ottenuto viene posizionato nella feature map nel punto che corrisponde alla regione dell'immagine elaborata.
+    \begin{lstlisting}[language=Python, frame=none]
+        (-10) + (0) + (30) +
+        (-40) + (0) + (60) +
+        (-70) + (0) + (90) = 60
+    \end{lstlisting}
+    \item Riposizionamento del filtro: il kernel viene riposizionato spostandolo di uno o più pixel (stride) e il flusso si ripete fino alla copertura completa dell'immagine.
+\end{enumerate}
+
+L'otuput del layer convoluzionale è una serie di feature map ognuna corrispondente a ciascun filtro.
+
+\begin{lstlisting}[language=Python, frame=none]
+    conv_layer= Conv2D(32, (3, 3), activation='relu', padding='same')(input_img)
+\end{lstlisting}
+
+\begin{itemize}
+    \item 32 rappresenta il numero di filtri.
+    \item (3,3) rappresenta la dimensione dei kernel.
+    \item activation='relu' indica che come funzione di attivazione verrà utilizzata relu.
+    \item padding='same' consente di mantenere la dimensione dell'immagine in input anche dopo l'applicazione dei filtri
+\end{itemize}
+
+
+\subsection{Layer di pooling}
+I layer di pooling servono per ridurre le dimensioni delle feature maps mantenendo le caratteristiche importanti e riducendo di conseguenza la complessità di calcolo.
+\subsubsection{Funzionamento di un layer di pooling}
+Esempio di Max pooling con matrici 2x2 e stride di 2 pixel
+
+Feature map 4x4:
+\begin{lstlisting}[language=Python, frame=none]
+    [ 1, 3, 2, 4 ]
+    [ 5, 6, 8, 7 ]
+    [ 3, 2, 1, 0 ]
+    [ 1, 2, 4, 3 ]
+\end{lstlisting}
+
+\begin{enumerate}
+    \item Divisione della feature map in matrici 2x2:
+    \begin{lstlisting}[language=Python, frame=none]
+    
+        [ 1, 3 ]
+        [ 5, 6 ]
+        
+        [ 2, 4 ]
+        [ 8, 7 ]
+        
+        [ 3, 2 ]
+        [ 1, 0 ]
+        
+        [ 1, 2 ]
+        [ 4, 3 ]
+
+    \end{lstlisting}
+    \item Calcolo del valore massimo per ogni matrice:
+    
+    \begin{lstlisting}[language=Python, frame=none]
+        max(1, 3, 5, 6) = 6
+        max(2, 4, 8, 7) = 8
+        max(3, 2, 1, 0) = 3
+        max(1, 2, 4, 3) = 4
+    \end{lstlisting}
+
+    \item Creazione di una nuova feature map contenente i valori massimi:
+    \begin{lstlisting}[language=Python, frame=none]
+        [ 6, 8 ]
+        [ 3, 4 ]
+    \end{lstlisting}
+\end{enumerate}
+L'output del layer di pooling in questo caso è una feature map ridotta da 4x4 a 2x2.
+
+\begin{lstlisting}[language=Python, frame=none]
+    MaxPooling2D((2, 2), padding='same')(x)
+\end{lstlisting}
 
 \section{Autoencoder}
 L'autoencoder è un neural network in grado di comprimere il suo input e di ricostruirlo in maniera similare come output. \footcite[p.~499]{Goodfellow-et-al-2016}.
@@ -107,7 +211,6 @@ Nell'esempio viene utilizzata la MSE (Mean Squared Error).
 Ai fini del progetto la parte interessante dell'autoencoder è proprio l'encoder perchè comprime l'immagine in input lasciando un set di features nel bottleneck; che possono essere utilizzate successivamente per il clustering.
 
 
-\section{fine-tuning}
 
 
 
