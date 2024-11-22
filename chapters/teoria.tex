@@ -1,22 +1,46 @@
-\chapter{Basi teoriche}
+\chapter{Machine learning}
 \label{cap:teoria}
-\intro{Per comprendere al meglio gli argomenti trattati nel capitolo successivo è necessaria un'introduzione teorica}
-
-\section{Machine learning}
+\intro{Per comprendere al meglio gli argomenti trattati nel capitolo successivo è necessaria un'introduzione teorica} \\
 Il machine learning è un'applicazione della statistica che si concentra sullo sviluppo di algoritmi in grado di imparare dai dati che vengono loro forniti in input.
 Da un punto di vista più filosofico il machine learning è interessante perché sviluppando la nostra conoscenza su di esso stiamo di conseguenza migliorando la nostra comprensione dei principi su cui si sorregge l'intelligenza \footcite[p.~97]{Goodfellow-et-al-2016}.
 Gli algoritmi di machine learning si suddividono in due categorie principali:
 
 \begin{itemize}
-    \item apprendimento supervisionato
-    \item apprendimento non supervisionato 
+    \item apprendimento supervisionato: gli algoritmi che appartengono a questa categoria apprendono quali risultati generare seguendo la guida di un set di dati etichettati e con un output predefinito\footcite{site:machine-learning}.
+
+    \item apprendimento non supervisionato: gli algoritmi non supervisionati, anche conosciuti come apprendimento automatico, analizzano e raggruppano dataset non etichettati. Questi algoritmi riconoscono raggruppamenti di dati (cluster) senza la necessità dell'intervento umano\footcite{site:machine-learning}.
 \end{itemize}
 
-\subsection{apprendimento supervisionato}
-Gli algoritmi che appartengono a questa categoria apprendono quali risultati generare seguendo la guida di un set di dati etichettati e con un output predefinito\footcite{site:machine-learning}.
+Tali algoritmi vengono utilizzati nel progetto per il processo di classificazione. \\
+La classificazione è un metodo che consente di prevedere a quale classe un determinato input appartenga. 
+Quindi generalizzando un'entità viene rappresentata come vettore in uno spazio delle feature, tipicamente \( R^n \), successivamente vengono eseguite delle operazioni sul vettore che producono un valore preso da un insieme di etichette L noto a priori, il classificatore è quindi una funzione \( R^n \rightarrow L \). \\
+Un classico esempio di classificazione è fornito dal dataset Iris\footcite{site:iris-dataset}, è uno dei primi dataset utilizzati in letteratura per sperimentare i metodi di classificazione; contiene 3 classi composte da 50 istanze ciascuna, ogni classe si riferisce a un tipologia differente di iris (Fig.~\ref{fig:iris-images}).
 
-\subsection{apprendimento non supervisionato}
-Gli algoritmi non supervisionati, anche conosciuti come apprendimento automatico, analizzano e raggruppano dataset non etichettati. Questi algoritmi riconoscono raggruppamenti di dati (cluster) senza la necessità dell'intervento umano\footcite{site:machine-learning}.
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{teoria/iris-images.png} 
+    \caption{Tre tipologie di pianta}
+    \label{fig:iris-images}
+  \end{figure}
+
+In fase di addestramento vengono utilizzate le feature e le etichette (Fig.~\ref{fig:iris-schema}) di ciascuna pianta e in fase di test l'algoritmo utilizza le caratteristiche apprese per eseguire una classificazione su dati che non ha ricevuto durante il training.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{teoria/iris-schema.png} 
+    \caption{Schema delle feature}
+    \label{fig:iris-schema}
+  \end{figure}
+
+L'introduzione al machine learning è utile per presentare le applicazioni di tale disciplina utilizzate ai fini del progetto:
+\begin{itemize}
+    \item Clustering
+    \item PCA
+    \item Reti neurali
+    \item Deep learning
+    \item Autoencoder
+\end{itemize}
+Gli elementi citati in precedenza vengono introdotti e trattati nelle sezioni seguenti.
 
 \section{K-means}
 Il K-means è un algoritmo non supervisionato che viene utilizzato per il clustering, ossia per la suddivisione del dataset in gruppi che contengono caratteristiche simili.
@@ -42,52 +66,110 @@ Quindi è importante scegliere con cura il numero iniziale K da assegnare, per s
     Varia tra -1 e 1, se il valore è vicino a 1 il punto è all'interno del suo cluster e ben separato dai cluster limitrofi, se è vicino a 0 il punto è confinante tra due cluster infine un valore negativo indica l'assegnazione a un cluster sbagliato.
 \end{itemize}
 
-%dovresti spiegare come funziona realmente ma vediamo che dice il prof
-
 \section{PCA}
 L'analisi dei componenti principali è un algoritmo non supervisionato in grado di estrarre le informazioni più rilevanti da dataset di grandi dimensioni, riducendo così la complessità del modello ed evitando che si presenti il fenomeno della "maledizione della dimensionalità"\footcite{site:PCA}.
 
-\subsection{Maledizione della dimensionalità}
 La maledizione della dimensionalità si verifica all'aumentare della dimensionalità dei dati: con l'aumentare delle dimensioni, il volume dello spazio aumenta in maniera esponenziale, rendendo difficile l'elaborazione da parte degli algoritmi di machine learning, che dovranno lavorare su dati molto sparsi con conseguenze negative per le prestazioni.
 
-\section{feature}
+Tra gli ulteriori vantaggi che hanno portato all'adozione della PCA sono presenti la riduzione dei tempi di calcolo dovuta alla minor quantità di feature e la possibilità di visualizzare i risultati del clustering su un grafico cartesiano bidimensionale (Fig.~\ref{fig:pca-chart}) aumentando il livello di comprensione dell'utente.
 
-\section{Deep learning}
-Il deep learning è un processo di machine learning che sfrutta nodi interconnessi tra di loro (anche chiamati neuroni) in una struttura a strati ispirata al cervello umano (da qui neural network).
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.7\columnwidth]{teoria/pca-chart.png} 
+    \caption{Grafico contenente PCA}
+    \label{fig:pca-chart}
+  \end{figure}
+
+\section{Reti neurali}
+Le reti neurali (Fig.~\ref{fig:rete-neurale}) sono un processo di machine learning che sfrutta nodi interconnessi tra di loro (anche chiamati neuroni) in una struttura a strati ispirata al cervello umano (da qui neural network).
 In genere consistono di un sistema adattivo utilizzato dai computer per imparare dagli errori commessi e automigliorarsi\footcite{site:rete-neurale}.
 
-\subsection{Apprendimento}
-Gli strati densi (dense layers) sono alla base della rete neurale e sono composti dai neuroni.
-Ogni layer è interconnesso con lo strato che lo precede e con quello successivo, in particolare ogni neurone dello strato è connesso a ogni neurone dello strato successivo.
-Tutti i collegamenti tra neuroni possiedono un peso che corrisponde a un valore numerico, tale valore determina la forza di ogni connessione ossia l'influenza che l'output di un neurone ha sull'input di un altro neurone. In parole semplici i pesi possono aumentare o diminuire l'importanza di una specifica informazione.
-{FORMULARE MEGLIO QUESTA PARTE, CERCARE NEGLI APPUNTI
-I bias sono dei valori associati all'output di ciascun neurone e servono a garantire della flessibilità durante l'apprendimento; con l'introduzione dei bias si aggiunge una soglia che consente di attivare il neurone 
-La funzione di attivazione la funzione di attivazione è una funzione matematica non lineare che viene applicata all'output di ogni neuronesfrutta per calcolare se il neurone deve attivarsi o meno 
-}
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.4\columnwidth]{teoria/reteneurale.png} 
+    \caption{Esempio di rete neurale}
+    \label{fig:rete-neurale}
+  \end{figure}
 
 \subsubsection{Struttura}
 All'interno di una rete neurale sono presenti:
 \begin{itemize}
     \item Input layer: riceve l'input che la rete deve elaborare.
     \item Hidden layer: possono essere uno o più e si occupano della elaborazione del dato in input.
-    \item Output layer: mostra l'output dell'elaborazione
+    \item Output layer: mostra l'output dell'elaborazione.
 \end{itemize}
 
-\subsubsection{Fasi di apprendimento} RISCRIVERE QUESTA PARTE E AGGIUNGERE UNO SCHEMA 
-%\begin{enumerate}
-%    \item Inizializzazione: Pesi e bias sono inizializzati casualmente o con specifici metodi.
-%    \item Forward Propagation: Gli input attraversano la rete per ottenere un output.
-%    \item Calcolo della Perdita: La funzione di perdita misura l'errore.
-%    \item Backward Propagation: Gradiente calcolato per aggiornare pesi e bias.
-%    \item Aggiornamento dei Pesi: Basato sul gradiente e sul learning rate.
-%    \item Ripetizione (Epoche): Il processo è ripetuto per molte epoche per ridurre %progressivamente l'errore.
-%\end{enumerate}
+\subsection{Apprendimento}
+Gli strati densi (dense layers) sono alla base della rete neurale e sono composti dai neuroni.
+Ogni layer è interconnesso con lo strato che lo precede e con quello successivo, in particolare ogni neurone dello strato è connesso a ogni neurone dello strato successivo.
 
-\section{Convolutional neural network}
-Le reti neurali convoluzionali (CNN) sfruttano dei layer convoluzionali per eseguire la classificazione di dati tridimensionali, come ad esempio le classiche immagini raster.
-\subsection{Layer convoluzionali}
+\subsubsection{Funzionamento del neurone}
+
+\begin{itemize}
+    \item Ogni connessione ha un peso che indica la forza della connessione e il suo valore può essere positivo o negativo.
+    \item L'input che un neurone riceve da ciascuno dei neuroni a cui è connesso si calcola moltiplicando il segnale proveniente da quel neurone per il peso sulla connessione.
+    \item L'input totale del neurone è la sommatoria delle attivazioni che il neurone riceve dagli altri neuroni.
+    \item Lo stato di attivazione finale viene calcolato attraverso una funzione di attivazione (ad esempio RELU o sigmoide, Fig.~\ref{fig:relu-sigmoid}).
+    \item L'output dei neuroni viene inviato ai neuroni successivi.
+\end{itemize}
+Lo schema successivo mostra il procedimento appena descritto (Fig.~\ref{fig:neurone})
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.9\columnwidth]{teoria/neurone.png} 
+    \caption{Funzionamento del neurone}
+    \label{fig:neurone}
+  \end{figure}
+
+  \begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{teoria/relu-sigmoid.png} 
+    \caption{Funzioni di attivazione}
+    \label{fig:relu-sigmoid}
+  \end{figure}
+
+\newpage
+
+\subsubsection{Fasi di apprendimento} 
+Inizialmente la rete riceve in input il vettore, i pesi e i bias vengono decisi in maniera casuale.
+I dati si spostano di strato in strato fino a raggiungere quello di output (forward propagation, Fig.~\ref{fig:propagation}), successivamente la funzione di perdita misura il grado di errore e tramite la backward propagation avviene l'Aggiornamento dei pesi.
+Queste fasi vengono ripetute per un numero adeguato di volte (epoche) per ridurre man mano l'errore.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.6\columnwidth]{teoria/propagation.png} 
+    \caption{Forward e backward propagation}
+    \label{fig:propagation}
+  \end{figure}
+
+\newpage
+\subsection{Classificazione}
+I dati da classificare vengono inseriti all'interno della rete neurale che fornisce in output la classe di appartenenza di ciascun dato (Fig.~\ref{fig:classificazione}).
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.6\columnwidth]{teoria/classificazione.png} 
+    \caption{Classificazione dei dati}
+    \label{fig:classificazione}
+  \end{figure}
+
+
+\section{Deep learning}
+Con il termine deep learning si identificano reti neurali con un numero di strati nascosti maggiore o uguale a due (Fig.~\ref{fig:deep-learning}).
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{teoria/deep-learning.png} 
+    \caption{Esempio di rete neurale con più strati nascosti}
+    \label{fig:deep-learning}
+  \end{figure}
+
+\subsection{Convolutional neural network}
+Le reti neurali convoluzionali (CNN) sono un esempio di deep learning, esse sfruttano dei layer convoluzionali per eseguire la classificazione di dati tridimensionali, come ad esempio le classiche immagini raster.
+\subsubsection{Layer convoluzionali}
 I layer convoluzionali hanno come scopo l'estrazione di feature dalle immagini (texture, bordi, ecc...).
-\subsubsection{Funzionamento di un layer convoluzionale}
+Per spiegare il funzionamento di un layer convoluzionale è necessario introdurre la nozione di kernel.
+
 Il kernel (filtro) è una matrice contenente dei pesi, che viene spostata lungo l'immagine effettuando una convoluzione in ogni posizione.
 Esempio con kernel di dimensioni 3x3:
 
@@ -137,7 +219,7 @@ L'otuput del layer convoluzionale è una serie di feature map ognuna corrisponde
 \end{itemize}
 
 
-\subsection{Layer di pooling}
+\subsubsection{Layer di pooling}
 I layer di pooling servono per ridurre le dimensioni delle feature maps mantenendo le caratteristiche importanti e riducendo di conseguenza la complessità di calcolo.
 \subsubsection{Funzionamento di un layer di pooling}
 Esempio di Max pooling con matrici 2x2 e stride di 2 pixel
