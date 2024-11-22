@@ -42,14 +42,24 @@ L'introduzione al machine learning è utile per presentare le applicazioni di ta
 \end{itemize}
 Gli elementi citati in precedenza vengono introdotti e trattati nelle sezioni seguenti.
 
+\newpage
+
 \section{K-means}
 Il K-means è un algoritmo non supervisionato che viene utilizzato per il clustering, ossia per la suddivisione del dataset in gruppi che contengono caratteristiche simili.
 Suddivide un set di dati in gruppi simili sulla base della distanza tra i loro centroidi. 
 Il centroide, è la media di tutti i punti presenti all'interno del cluster.
 
-Il numero K sta a indicare quanti cluster dovranno essere assegnati dall'algoritmo, più il numero di cluster è elevato più essi saranno piccoli e dettagliati al contrario se i cluster sono pochi il risultato saranno dei cluster più grandi ma meno dettagliati.
+Il numero K sta a indicare quanti cluster dovranno essere assegnati dall'algoritmo, più il numero di cluster è elevato più essi saranno piccoli e dettagliati al contrario se i cluster sono pochi il risultato saranno dei cluster più grandi ma meno dettagliati (Fig.~\ref{fig:k-means}).
 
-Ad esempio se volessimo clusterizzare un insieme di animali composto da mammiferi e uccelli utilizzando K=2 l'algoritmo creerebbe due cluster uno contenente i mammiferi e uno gli uccelli (cluster grandi e poco dettagliati).
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.7\columnwidth]{teoria/k-means.png} 
+    \caption{Esempio di clustering}
+    \label{fig:k-means}
+  \end{figure}
+
+
+Ad esempio se volessimo clusterizzare un insieme di animali composto da mammiferi e volatili utilizzando K=2 l'algoritmo creerebbe due cluster uno contenente i mammiferi e uno i volatili  (cluster grandi e poco dettagliati).
 Se aumentassimo il numero di cluster l'algoritmo sarebbe in grado di essere più specifico andando a creare una quantità molto più elevata di cluster ben dettagliati contenenti meno elementi.
 Quindi è importante scegliere con cura il numero iniziale K da assegnare, per semplificare questa operazione esistono dei metodi di supporto:
 \begin{itemize}
@@ -79,6 +89,8 @@ Tra gli ulteriori vantaggi che hanno portato all'adozione della PCA sono present
     \caption{Grafico contenente PCA}
     \label{fig:pca-chart}
   \end{figure}
+
+\newpage
 
 \section{Reti neurali}
 Le reti neurali (Fig.~\ref{fig:rete-neurale}) sono un processo di machine learning che sfrutta nodi interconnessi tra di loro (anche chiamati neuroni) in una struttura a strati ispirata al cervello umano (da qui neural network).
@@ -142,7 +154,7 @@ Queste fasi vengono ripetute per un numero adeguato di volte (epoche) per ridurr
     \label{fig:propagation}
   \end{figure}
 
-\newpage
+
 \subsection{Classificazione}
 I dati da classificare vengono inseriti all'interno della rete neurale che fornisce in output la classe di appartenenza di ciascun dato (Fig.~\ref{fig:classificazione}).
 
@@ -153,6 +165,7 @@ I dati da classificare vengono inseriti all'interno della rete neurale che forni
     \label{fig:classificazione}
   \end{figure}
 
+\newpage
 
 \section{Deep learning}
 Con il termine deep learning si identificano reti neurali con un numero di strati nascosti maggiore o uguale a due (Fig.~\ref{fig:deep-learning}).
@@ -165,12 +178,27 @@ Con il termine deep learning si identificano reti neurali con un numero di strat
   \end{figure}
 
 \subsection{Convolutional neural network}
-Le reti neurali convoluzionali (CNN) sono un esempio di deep learning, esse sfruttano dei layer convoluzionali per eseguire la classificazione di dati tridimensionali, come ad esempio le classiche immagini raster.
+Le reti neurali convoluzionali (CNN, Fig.~\ref{fig:cnn}) sono un esempio di deep learning, esse sfruttano dei layer convoluzionali per eseguire la classificazione di dati tridimensionali, come ad esempio le classiche immagini raster.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{teoria/cnn.png} 
+    \caption{Esempio di rete neurale convoluzionale}
+    \label{fig:cnn}
+  \end{figure}
+
 \subsubsection{Layer convoluzionali}
 I layer convoluzionali hanno come scopo l'estrazione di feature dalle immagini (texture, bordi, ecc...).
 Per spiegare il funzionamento di un layer convoluzionale è necessario introdurre la nozione di kernel.
 
-Il kernel (filtro) è una matrice contenente dei pesi, che viene spostata lungo l'immagine effettuando una convoluzione in ogni posizione.
+Il kernel (filtro, Fig.~\ref{fig:kernel}) è una matrice contenente dei pesi, che viene spostata lungo l'immagine effettuando una convoluzione in ogni posizione.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{teoria/kernel.png} 
+    \caption{Funzionamento del kernel}
+    \label{fig:kernel}
+  \end{figure}
 Esempio con kernel di dimensioni 3x3:
 
 \begin{lstlisting}[language=Python, frame=none]
@@ -220,7 +248,18 @@ L'otuput del layer convoluzionale è una serie di feature map ognuna corrisponde
 
 
 \subsubsection{Layer di pooling}
-I layer di pooling servono per ridurre le dimensioni delle feature maps mantenendo le caratteristiche importanti e riducendo di conseguenza la complessità di calcolo.
+I layer di pooling (Fig.~\ref{fig:pooling}) servono per ridurre le dimensioni delle feature maps mantenendo le caratteristiche importanti e riducendo di conseguenza la complessità di calcolo.
+
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{teoria/pooling.png} 
+    \caption{Funzionamento del pooling}
+    \label{fig:pooling}
+  \end{figure}
+
+
+
 \subsubsection{Funzionamento di un layer di pooling}
 Esempio di Max pooling con matrici 2x2 e stride di 2 pixel
 
