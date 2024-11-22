@@ -122,7 +122,7 @@ Ogni layer è interconnesso con lo strato che lo precede e con quello successivo
     \item L'input che un neurone riceve da ciascuno dei neuroni a cui è connesso si calcola moltiplicando il segnale proveniente da quel neurone per il peso sulla connessione.
     \item L'input totale del neurone è la sommatoria delle attivazioni che il neurone riceve dagli altri neuroni.
     \item Lo stato di attivazione finale viene calcolato attraverso una funzione di attivazione (ad esempio RELU o sigmoide, Fig.~\ref{fig:relu-sigmoid}).
-    \item L'output dei neuroni viene inviato ai neuroni successivi.
+    \item L'output dei neuroni viene inviato ai neuroni successivi\footcite{LectureA}.
 \end{itemize}
 Lo schema successivo mostra il procedimento appena descritto (Fig.~\ref{fig:neurone})
 
@@ -187,6 +187,8 @@ Le reti neurali convoluzionali (CNN, Fig.~\ref{fig:cnn}) sono un esempio di deep
     \label{fig:cnn}
   \end{figure}
 
+\newpage
+
 \subsubsection{Layer convoluzionali}
 I layer convoluzionali hanno come scopo l'estrazione di feature dalle immagini (texture, bordi, ecc...).
 Per spiegare il funzionamento di un layer convoluzionale è necessario introdurre la nozione di kernel.
@@ -211,7 +213,7 @@ Esempio con kernel di dimensioni 3x3:
 \begin{enumerate}
     \item Posizionamento del filtro: il kernel viene inserito sulla prima zona 3x3 dell'immagine.
     \item Moltiplicazione di ogni elemento: ogni peso presente nel kernel viene moltiplicato per il valore corrispondente contenuto nella porzione di immagine.
-        
+    \newpage
     \begin{lstlisting}[language=Python, frame=none]
         PORZIONE DI IMMAGINE
         [ 10, 20, 30 ]
@@ -309,8 +311,18 @@ L'output del layer di pooling in questo caso è una feature map ridotta da 4x4 a
     MaxPooling2D((2, 2), padding='same')(x)
 \end{lstlisting}
 
+\newpage
+
 \section{Autoencoder}
-L'autoencoder è un neural network in grado di comprimere il suo input e di ricostruirlo in maniera similare come output. \footcite[p.~499]{Goodfellow-et-al-2016}.
+L'autoencoder (Fig.~\ref{fig:autoencoder-teoria}) è un neural network in grado di comprimere il suo input e di ricostruirlo in maniera similare come output. \footcite[p.~499]{Goodfellow-et-al-2016}.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.7\columnwidth]{teoria/autoencoder.png} 
+    \caption{Schema generale di un autoencoder}
+    \label{fig:autoencoder-teoria}
+  \end{figure}
+
 L'architettura si compone di due parti principali:
 \begin{enumerate}
     \item Encoder: comprime l'input riducendolo di dimensionalità (codifica).
@@ -328,8 +340,8 @@ Il bottleneck o latent space contiene la codifica e sta nel mezzo delle due comp
 Il processo di apprendimento ha come obiettivo minimizzare la loss function che misura la differenza tra input iniziale e output ricostruito dal decoder.
 \[ L(x, \hat{x}) = ||x - \hat{x}||^2 \]
 Nell'esempio viene utilizzata la MSE (Mean Squared Error).
+Ai fini del progetto la parte interessante dell'autoencoder è proprio l'encoder poiché comprime l'immagine in input lasciando un set di features nel bottleneck; che possono essere utilizzate successivamente per il clustering.
 
-Ai fini del progetto la parte interessante dell'autoencoder è proprio l'encoder perchè comprime l'immagine in input lasciando un set di features nel bottleneck; che possono essere utilizzate successivamente per il clustering.
 
 
 
