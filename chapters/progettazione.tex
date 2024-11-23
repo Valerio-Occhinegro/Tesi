@@ -76,7 +76,11 @@ Il primo tentativo è stato effettuato utilizzando un autoencoder che sfrutta es
 
 \subsubsection{Autoencoder con strati convoluzionali}
 L'autoencoder con strati convoluzionali (Fig.~\ref{fig:schema-conv}) ha consentito un netto miglioramento delle prestazioni e un consumo inferiore della memoria tali da poter aumentare le dimensioni delle immagini e implementare nuovamente l'utilizzo del colore.
-Le modifiche non sono state comunque sufficienti per avere un esperienza di utilizzo solida.
+Le modifiche non sono state comunque sufficienti per avere un esperienza di utilizzo solida causando:
+\begin{itemize}
+  \item Overflow della V-RAM se non utilizzato sotto specifiche condizioni.
+  \item Inconsistenza nei cluster.
+\end{itemize}
 Viene sotto riportata un immagine in bianco e nero di dimensioni 256*256 ottenuta dal bottleneck dell'autoencoder per comparare con il modello precedente (Fig.~\ref{fig:conv-ricostruita}).
 
 \begin{figure}[!h] 
@@ -259,6 +263,7 @@ Questa tabella contiene tutte i siti web (Fig.~\ref{fig:schema-domains}) delle a
   \label{fig:schema-domains}
 \end{figure}
 
+\newpage 
 
 \subsection{Pages}
 Contiene i link a tutte le pagine (Fig.~\ref{fig:schema-pages}) di ciascun dominio.

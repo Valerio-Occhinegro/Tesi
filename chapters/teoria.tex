@@ -1,20 +1,16 @@
 \chapter{Machine learning}
 \label{cap:teoria}
-\intro{Per comprendere al meglio gli argomenti trattati nel capitolo successivo è necessaria un'introduzione teorica} \\
-Il machine learning è un'applicazione della statistica che si concentra sullo sviluppo di algoritmi in grado di imparare dai dati che vengono loro forniti in input.
-Da un punto di vista più filosofico il machine learning è interessante perché sviluppando la nostra conoscenza su di esso stiamo di conseguenza migliorando la nostra comprensione dei principi su cui si sorregge l'intelligenza \footcite[p.~97]{Goodfellow-et-al-2016}.
-Gli algoritmi di machine learning si suddividono in due categorie principali:
+\intro{Per comprendere al meglio gli argomenti trattati nel capitolo successivo è necessaria un'introduzione teorica}\\Il machine learning è un'applicazione della statistica che si concentra sullo sviluppo di algoritmi in grado di imparare dai dati che vengono loro forniti in input.
+Da un punto di vista più filosofico il machine learning è interessante perché sviluppando la nostra conoscenza su di esso stiamo di conseguenza migliorando la nostra comprensione dei principi su cui si sorregge l'intelligenza \footcite[p.~97]{Goodfellow-et-al-2016}.\\Gli algoritmi di machine learning si suddividono in due categorie principali:
 
 \begin{itemize}
     \item apprendimento supervisionato: gli algoritmi che appartengono a questa categoria apprendono quali risultati generare seguendo la guida di un set di dati etichettati e con un output predefinito\footcite{site:machine-learning}.
 
     \item apprendimento non supervisionato: gli algoritmi non supervisionati, anche conosciuti come apprendimento automatico, analizzano e raggruppano dataset non etichettati. Questi algoritmi riconoscono raggruppamenti di dati (cluster) senza la necessità dell'intervento umano\footcite{site:machine-learning}.
 \end{itemize}
-
-Tali algoritmi vengono utilizzati nel progetto per il processo di classificazione. \\
+Tali algoritmi vengono utilizzati nel progetto per il processo di classificazione.\\
 La classificazione è un metodo che consente di prevedere a quale classe un determinato input appartenga. 
-Quindi generalizzando un'entità viene rappresentata come vettore in uno spazio delle feature, tipicamente \( R^n \), successivamente vengono eseguite delle operazioni sul vettore che producono un valore preso da un insieme di etichette L noto a priori, il classificatore è quindi una funzione \( R^n \rightarrow L \). \\
-Un classico esempio di classificazione è fornito dal dataset Iris\footcite{site:iris-dataset}, è uno dei primi dataset utilizzati in letteratura per sperimentare i metodi di classificazione; contiene 3 classi composte da 50 istanze ciascuna, ogni classe si riferisce a un tipologia differente di iris (Fig.~\ref{fig:iris-images}).
+Quindi generalizzando un'entità viene rappresentata come vettore in uno spazio delle feature, tipicamente \( R^n \), successivamente vengono eseguite delle operazioni sul vettore che producono un valore preso da un insieme di etichette L noto a priori, il classificatore è quindi una funzione \( R^n \rightarrow L \).\\Un classico esempio di classificazione è fornito dal dataset Iris\footcite{site:iris-dataset}, è uno dei primi dataset utilizzati in letteratura per sperimentare i metodi di classificazione; contiene 3 classi composte da 50 istanze ciascuna, ogni classe si riferisce a un tipologia differente di iris (Fig.~\ref{fig:iris-images}).
 
 \begin{figure}[!h] 
     \centering 
@@ -22,7 +18,6 @@ Un classico esempio di classificazione è fornito dal dataset Iris\footcite{site
     \caption{Tre tipologie di pianta}
     \label{fig:iris-images}
   \end{figure}
-
 In fase di addestramento vengono utilizzate le feature e le etichette (Fig.~\ref{fig:iris-schema}) di ciascuna pianta e in fase di test l'algoritmo utilizza le caratteristiche apprese per eseguire una classificazione su dati che non ha ricevuto durante il training.
 
 \begin{figure}[!h] 
@@ -31,7 +26,6 @@ In fase di addestramento vengono utilizzate le feature e le etichette (Fig.~\ref
     \caption{Schema delle feature}
     \label{fig:iris-schema}
   \end{figure}
-
 L'introduzione al machine learning è utile per presentare le applicazioni di tale disciplina utilizzate ai fini del progetto:
 \begin{itemize}
     \item Clustering
@@ -47,9 +41,7 @@ Gli elementi citati in precedenza vengono introdotti e trattati nelle sezioni se
 \section{K-means}
 Il K-means è un algoritmo non supervisionato che viene utilizzato per il clustering, ossia per la suddivisione del dataset in gruppi che contengono caratteristiche simili.
 Suddivide un set di dati in gruppi simili sulla base della distanza tra i loro centroidi. 
-Il centroide, è la media di tutti i punti presenti all'interno del cluster.
-
-Il numero K sta a indicare quanti cluster dovranno essere assegnati dall'algoritmo, più il numero di cluster è elevato più essi saranno piccoli e dettagliati al contrario se i cluster sono pochi il risultato saranno dei cluster più grandi ma meno dettagliati (Fig.~\ref{fig:k-means}).
+Il centroide, è la media di tutti i punti presenti all'interno del cluster.\\Il numero K sta a indicare quanti cluster dovranno essere assegnati dall'algoritmo, più il numero di cluster è elevato più essi saranno piccoli e dettagliati al contrario se i cluster sono pochi il risultato saranno dei cluster più grandi ma meno dettagliati (Fig.~\ref{fig:k-means}).
 
 \begin{figure}[!h] 
     \centering 
@@ -57,8 +49,6 @@ Il numero K sta a indicare quanti cluster dovranno essere assegnati dall'algorit
     \caption{Esempio di clustering}
     \label{fig:k-means}
   \end{figure}
-
-
 Ad esempio se volessimo clusterizzare un insieme di animali composto da mammiferi e volatili utilizzando K=2 l'algoritmo creerebbe due cluster uno contenente i mammiferi e uno i volatili  (cluster grandi e poco dettagliati).
 Se aumentassimo il numero di cluster l'algoritmo sarebbe in grado di essere più specifico andando a creare una quantità molto più elevata di cluster ben dettagliati contenenti meno elementi.
 Quindi è importante scegliere con cura il numero iniziale K da assegnare, per semplificare questa operazione esistono dei metodi di supporto:
@@ -71,17 +61,13 @@ Quindi è importante scegliere con cura il numero iniziale K da assegnare, per s
         \caption{Grafico rappresentante il metodo del gomito}
         \label{fig:gomito}
       \end{figure}
-
+    \newpage
     \item Il Silhouette Score indica quanto i punti appartenenti a un cluster sono simili tra loro e quanto differiscono dai punti contenuti negli altri cluster.
     Varia tra -1 e 1, se il valore è vicino a 1 il punto è all'interno del suo cluster e ben separato dai cluster limitrofi, se è vicino a 0 il punto è confinante tra due cluster infine un valore negativo indica l'assegnazione a un cluster sbagliato.
 \end{itemize}
 
 \section{PCA}
-L'analisi dei componenti principali è un algoritmo non supervisionato in grado di estrarre le informazioni più rilevanti da dataset di grandi dimensioni, riducendo così la complessità del modello ed evitando che si presenti il fenomeno della "maledizione della dimensionalità"\footcite{site:PCA}.
-
-La maledizione della dimensionalità si verifica all'aumentare della dimensionalità dei dati: con l'aumentare delle dimensioni, il volume dello spazio aumenta in maniera esponenziale, rendendo difficile l'elaborazione da parte degli algoritmi di machine learning, che dovranno lavorare su dati molto sparsi con conseguenze negative per le prestazioni.
-
-Tra gli ulteriori vantaggi che hanno portato all'adozione della PCA sono presenti la riduzione dei tempi di calcolo dovuta alla minor quantità di feature e la possibilità di visualizzare i risultati del clustering su un grafico cartesiano bidimensionale (Fig.~\ref{fig:pca-chart}) aumentando il livello di comprensione dell'utente.
+L'analisi dei componenti principali è un algoritmo non supervisionato in grado di estrarre le informazioni più rilevanti da dataset di grandi dimensioni, riducendo così la complessità del modello ed evitando che si presenti il fenomeno della "maledizione della dimensionalità"\footcite{site:PCA}.\\La maledizione della dimensionalità si verifica all'aumentare della dimensionalità dei dati: con l'aumentare delle dimensioni, il volume dello spazio aumenta in maniera esponenziale, rendendo difficile l'elaborazione da parte degli algoritmi di machine learning, che dovranno lavorare su dati molto sparsi con conseguenze negative per le prestazioni.\\Tra gli ulteriori vantaggi che hanno portato all'adozione della PCA sono presenti la riduzione dei tempi di calcolo dovuta alla minor quantità di feature e la possibilità di visualizzare i risultati del clustering su un grafico cartesiano bidimensionale (Fig.~\ref{fig:pca-chart}) aumentando il livello di comprensione dell'utente.
 
 \begin{figure}[!h] 
     \centering 
@@ -191,9 +177,7 @@ Le reti neurali convoluzionali (CNN, Fig.~\ref{fig:cnn}) sono un esempio di deep
 
 \subsubsection{Layer convoluzionali}
 I layer convoluzionali hanno come scopo l'estrazione di feature dalle immagini (texture, bordi, ecc...).
-Per spiegare il funzionamento di un layer convoluzionale è necessario introdurre la nozione di kernel.
-
-Il kernel (filtro, Fig.~\ref{fig:kernel}) è una matrice contenente dei pesi, che viene spostata lungo l'immagine effettuando una convoluzione in ogni posizione.
+Per spiegare il funzionamento di un layer convoluzionale è necessario introdurre la nozione di kernel.\\Il kernel (filtro, Fig.~\ref{fig:kernel}) è una matrice contenente dei pesi, che viene spostata lungo l'immagine effettuando una convoluzione in ogni posizione.
 
 \begin{figure}[!h] 
     \centering 
@@ -234,7 +218,6 @@ Esempio con kernel di dimensioni 3x3:
     \end{lstlisting}
     \item Riposizionamento del filtro: il kernel viene riposizionato spostandolo di uno o più pixel (stride) e il flusso si ripete fino alla copertura completa dell'immagine.
 \end{enumerate}
-
 L'otuput del layer convoluzionale è una serie di feature map ognuna corrispondente a ciascun filtro.
 
 \begin{lstlisting}[language=Python, frame=none]
@@ -265,8 +248,9 @@ I layer di pooling (Fig.~\ref{fig:pooling}) servono per ridurre le dimensioni de
 \subsubsection{Funzionamento di un layer di pooling}
 Esempio di Max pooling con matrici 2x2 e stride di 2 pixel
 
-Feature map 4x4:
+
 \begin{lstlisting}[language=Python, frame=none]
+    FEATURE MAP 4x4
     [ 1, 3, 2, 4 ]
     [ 5, 6, 8, 7 ]
     [ 3, 2, 1, 0 ]
@@ -322,7 +306,6 @@ L'autoencoder (Fig.~\ref{fig:autoencoder-teoria}) è un neural network in grado 
     \caption{Schema generale di un autoencoder}
     \label{fig:autoencoder-teoria}
   \end{figure}
-
 L'architettura si compone di due parti principali:
 \begin{enumerate}
     \item Encoder: comprime l'input riducendolo di dimensionalità (codifica).
@@ -336,7 +319,6 @@ Il bottleneck o latent space contiene la codifica e sta nel mezzo delle due comp
     \item Il bottleneck contiene la codifica \( z \)
     \item Il decoder cerca di decodificare \( z \) tramite la funzione \( g \) ottenendo come output \( \hat{x} = g(z) \).
 \end{enumerate}
-
 Il processo di apprendimento ha come obiettivo minimizzare la loss function che misura la differenza tra input iniziale e output ricostruito dal decoder.
 \[ L(x, \hat{x}) = ||x - \hat{x}||^2 \]
 Nell'esempio viene utilizzata la MSE (Mean Squared Error).
