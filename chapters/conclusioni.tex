@@ -1,10 +1,49 @@
 \chapter{Conclusioni}
 \label{cap:conclusioni}
 
-\section{Consuntivo finale}
-
 \section{Raggiungimento degli obiettivi}
+Per terminare il percorso di stage è necessario verificare il grado di soddisfacimento degli obiettivi preimposti, tale processo viene rappresentato nella tabella \ref{soddisfazione}.
+Come è possibile notare, tutti i requisiti obbligatori sono stati soddisfatti, ma c'è ancora spazio per dei possibili miglioramenti.
 
-\section{Conoscenze acquisite}
+\begin{table}[!htbp]
+    \centering
+    \begin{tabularx}{0.8\textwidth}{|c|X|X|}
+    \hline
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Soddisfacimento}\\
+    \hline
+    O01 & Implementare un sistema robusto per la cattura degli screenshot, assicurando l’integrazione con il database per l’archiviazione e l’analisi. & Soddisfatto\\
+    \hline
+    O02 & Garantire la creazione di una documentazione tecnica completa che supporti sia l’uso che la manutenzione  del sistema sviluppato. & Soddisfatto\\
+    \hline
+    O03 & Creazione di un IA in grado di suddividere in cluster i siti web. & Soddisfatto\\
+    \hline
+    O04 & Creazione di un IA classificativa in grado di assegnare un punteggio ai siti-web analizzati. & Soddisfatto\\
+    \hline
+    D01 & Aggiungere la valutazione creata dall'IA nel database utilizzato dal CRM. & Soddisfatto\\
+    \hline
+    D02 & Automatizzare l'invio di e-mail alle aziende che hanno ottenuto una valutazione scarsa. & Soddisfatto\\
+    \hline
+    F01 & Migliorare la raccolta dei dati delle aziende dal web & Non soddisfatto\\
+    \hline
+    F02 & Aggiornare automaticamente la valutazione dei siti web & Soddisfatto\\
+    \hline
+    \end{tabularx}
+    \caption{Grado di soddisfacimento degli obiettivi}
+    \label{soddisfazione}
+\end{table}
+
+\subsection{Clustering}
+I risultati di clustering migliori sono stati ottenuti con l'estrazione delle feature tramite ResNet50, ma il processo necessita di grossi miglioramenti per essere funzionale;
+infatti visualizzando manualmente i cluster ottenuti non è possibile notare delle distinzioni nette tra immagini appartenenti a una o all'altra categoria.
+Perciò è necessario proseguire con gli studi comprendendo più a fondo come utilizzare l'algoritmo K-means al meglio e testando altri algoritmi di clustering.
+Il lavoro svolto può essere considerato un'ottima base di partenza poiché si è concentrato sullo studio preliminare di varie metodologie; arrivando a escludere quelle meno adatte al compito di estrazione delle feature.
+
+\subsection{Valutazione delle immagini}
+Per quanto riguarda la fase di valutazione, i risultati ottenuti dal fine-tuning di ResNet50 sembrano essere ottimali, ottenendo un'accuratezza del 92\% e l'assegnazione di voti congrui a quelli che lo sviluppatore si aspetterebbe di visualizzare.
+Il prodotto è comunque migliorabile aggiungendo una quantità più elevata di screenshot al dataset e di conseguenza aumentando il range di siti a cui adattarsi.
 
 \section{Valutazione personale}
+L'esperienza di stage è stata di grande impatto, ha consentito di sfruttare le conoscenze acquisite e ha messo in risalto numerose lacune da colmare.
+Il progetto mi ha consentito di apprendere nuove conoscenze nell'ambito del machine learning, argomento che personalmente non avevo mai approfondito. 
+Le scarse conoscenze in ambito IA hanno comportato una grossa sfida, che una volta superata ha portato a un alto livello di soddisfazione.
+
