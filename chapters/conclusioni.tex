@@ -1,10 +1,15 @@
 \chapter{Conclusioni}
 \label{cap:conclusioni}
 
+
 \section{Raggiungimento degli obiettivi}
 Per terminare il percorso di stage è necessario verificare il grado di soddisfacimento degli obiettivi preimposti, tale processo viene rappresentato nella tabella \ref{soddisfazione}.
-Come è possibile notare, tutti i requisiti obbligatori sono stati soddisfatti, ma c'è ancora spazio per dei possibili miglioramenti.
+L'implementazione del sistema di cattura rispecchia completamente le aspettative e funziona in maniera corretta, integrandosi inoltre con il database preesistente.
+I requisiti desiderabili e facoltativi, come l'inserimento e l'aggiornamento della valutazione dei siti web, sono risultati una naturale estensione del processo di valutazione tramite IA e quindi sono stati implementati come se facessero parte del medesimo obiettivo.
+L'automazione dell'invio delle e-mail è stata preparata e testata, ma per motivi di sicurezza necessita ancora dell'approvazione di un supervisore prima di lanciare la campagna di invio.
+Nelle sotto sezioni successive è presente un'analisi più dettagliata dei processi fondamentali del processo.
 
+\newpage
 \begin{table}[!htbp]
     \centering
     \begin{tabularx}{0.8\textwidth}{|c|X|X|}
@@ -32,14 +37,37 @@ Come è possibile notare, tutti i requisiti obbligatori sono stati soddisfatti, 
     \label{soddisfazione}
 \end{table}
 
+
+\newpage 
+
 \subsection{Clustering}
-I risultati di clustering migliori sono stati ottenuti con l'estrazione delle feature tramite ResNet50, ma il processo necessita di grossi miglioramenti per essere funzionale;
-infatti visualizzando manualmente i cluster ottenuti non è possibile notare delle distinzioni nette tra immagini appartenenti a una o all'altra categoria.
-Perciò è necessario proseguire con gli studi comprendendo più a fondo come utilizzare l'algoritmo K-means al meglio e testando altri algoritmi di clustering.
+I risultati di clustering migliori sono stati ottenuti con l'estrazione delle feature tramite ResNet50, ma il processo necessita di ulteriori ottimizzazioni per essere funzionale;
+infatti visualizzando manualmente i cluster ottenuti non è possibile notare delle distinzioni nette tra immagini appartenenti a una o all'altra categoria. Ciò potrebbe essere imputabile alla natura del dataset, le immagini di siti web non sono dei soggetti semplici da analizzare, poiché ricche di informazioni come immagini relative al contesto, che non sono utili per giudicare la qualità.
+Ad esempio prendiamo in considerazione il sito web dell'università e il sito di un centro estetico che offre servizi di manicure (Fig.~\ref{fig:unipd-conc}).
+Le due immagini contengono rappresentazioni di mani, di conseguenza potrebbero essere inserite all'interno dello stesso cluster nonostante facciano parte di contesti diametralmente opposti.
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{conclusioni/unipd.png} 
+    \caption{Immagini appartenenti a contesti differenti}
+    \label{fig:unipd-conc}
+  \end{figure}
+
+\newpage
+Un'altra combinazione è dettata da appartenenza alla medesima categoria e differenza di qualità (Fig.~\ref{fig:computer-conc}).
+In questo caso la presenza dei computer potrebbe comportare l'inserimento nello stesso cluster, ma come è possibile notare, ciò non sarebbe utile ai fini del progetto, perché si unirebbe un sito web di buona qualità a uno che utilizza tecnologie molto arretrate.
+
+\begin{figure}[!h] 
+    \centering 
+    \includegraphics[width=0.8\columnwidth]{conclusioni/computer.png} 
+    \caption{Immagini appartenenti allo stesso contesto}
+    \label{fig:computer-conc}
+  \end{figure}
+Per migliorare il clustering ci si potrebbe concentrare solo su parti specifiche del sito web rendendo l'analisi più indipendente da informazioni non utili; risulta anche necessario proseguire con gli studi comprendendo più a fondo come utilizzare l'algoritmo K-means al meglio e testando altri algoritmi di clustering.
 Il lavoro svolto può essere considerato un'ottima base di partenza poiché si è concentrato sullo studio preliminare di varie metodologie; arrivando a escludere quelle meno adatte al compito di estrazione delle feature.
 
 \subsection{Valutazione delle immagini}
-Per quanto riguarda la fase di valutazione, i risultati ottenuti dal fine-tuning di ResNet50 sembrano essere ottimali, ottenendo un'accuratezza del 92\% e l'assegnazione di voti congrui a quelli che lo sviluppatore si aspetterebbe di visualizzare.
+Per quanto riguarda la fase di valutazione, i risultati ottenuti dal fine-tuning di ResNet50 sembrano essere ottimali, ottenendo un'accuratezza del 92\%.
+La rete neurale è inoltre risultata capace di assegnare valutazioni congrue a quelle che lo sviluppatore si aspetterebbe di visualizzare; ossia voti che vanno da 0 a 100 in un range che spazia da siti molto antiquati e nettamente migliorabili a siti ottimi che non necessitano modifiche.
 Il prodotto è comunque migliorabile aggiungendo una quantità più elevata di screenshot al dataset e di conseguenza aumentando il range di siti a cui adattarsi.
 
 \section{Valutazione personale}
