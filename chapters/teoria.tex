@@ -1,16 +1,16 @@
 \chapter{Machine learning}
 \label{cap:teoria}
-\intro{Per comprendere al meglio gli argomenti trattati nel capitolo successivo è necessaria un'introduzione teorica}\\Il machine learning è un'applicazione della statistica che si concentra sullo sviluppo di algoritmi in grado di imparare dai dati che vengono loro forniti in input.
-Da un punto di vista più filosofico il machine learning è interessante perché sviluppando la nostra conoscenza su di esso stiamo di conseguenza migliorando la nostra comprensione dei principi su cui si sorregge l'intelligenza \footcite[p.~97]{Goodfellow-et-al-2016}.\\Gli algoritmi di machine learning si suddividono in due categorie principali:
+\intro{Per comprendere al meglio gli argomenti trattati nel capitolo successivo è necessaria un'introduzione teorica}\\Il \emph{machine learning} è un'applicazione della statistica che si concentra sullo sviluppo di algoritmi in grado di imparare dai dati che vengono loro forniti in \emph{input}.
+Da un punto di vista più filosofico il \emph{machine learning} è interessante perché sviluppando la nostra conoscenza su di esso stiamo di conseguenza migliorando la nostra comprensione dei principi su cui si sorregge l'intelligenza \footcite[p.~97]{Goodfellow-et-al-2016}.\\Gli algoritmi di \emph{machine learning} si suddividono in due categorie principali:
 
 \begin{itemize}
-    \item apprendimento supervisionato: gli algoritmi che appartengono a questa categoria apprendono quali risultati generare seguendo la guida di un set di dati etichettati e con un output predefinito\footcite{site:machine-learning}.
+    \item \textbf{Apprendimento supervisionato}: gli algoritmi che appartengono a questa categoria apprendono quali risultati generare seguendo la guida di un set di dati etichettati e con un \emph{output} predefinito\footcite{site:machine-learning}.
 
-    \item apprendimento non supervisionato: gli algoritmi non supervisionati, anche conosciuti come apprendimento automatico, analizzano e raggruppano dataset non etichettati. Questi algoritmi riconoscono raggruppamenti di dati (cluster) senza la necessità dell'intervento umano\footcite{site:machine-learning}.
+    \item \textbf{Apprendimento non supervisionato}: gli algoritmi non supervisionati, anche conosciuti come apprendimento automatico, analizzano e raggruppano \emph{dataset} non etichettati. Questi algoritmi riconoscono raggruppamenti di dati (\emph{cluster}) senza la necessità dell'intervento umano\footcite{site:machine-learning}.
 \end{itemize}
 Tali algoritmi vengono utilizzati nel progetto per il processo di classificazione.\\
-La classificazione è un metodo che consente di prevedere a quale classe un determinato input appartenga. 
-Quindi generalizzando un'entità viene rappresentata come vettore in uno spazio delle feature, tipicamente \( R^n \), successivamente vengono eseguite delle operazioni sul vettore che producono un valore preso da un insieme di etichette L noto a priori, il classificatore è quindi una funzione \( R^n \rightarrow L \).\\Un classico esempio di classificazione è fornito dal dataset Iris\footcite{site:iris-dataset}, è uno dei primi dataset utilizzati in letteratura per sperimentare i metodi di classificazione; contiene 3 classi composte da 50 istanze ciascuna, ogni classe si riferisce a un tipologia differente di iris (Fig.~\ref{fig:iris-images}).
+La classificazione è un metodo che consente di prevedere a quale classe un determinato \emph{input} appartenga. 
+Quindi generalizzando un'entità viene rappresentata come vettore in uno spazio delle \emph{feature}, tipicamente \( R^n \), successivamente vengono eseguite delle operazioni sul vettore che producono un valore preso da un insieme di etichette L noto a priori, il classificatore è quindi una funzione \( R^n \rightarrow L \).\\Un classico esempio di classificazione è fornito dal \emph{dataset} Iris\footcite{site:iris-dataset}, è uno dei primi \emph{dataset} utilizzati in letteratura per sperimentare i metodi di classificazione; contiene 3 classi composte da 50 istanze ciascuna, ogni classe si riferisce a un tipologia differente di iris (Fig.~\ref{fig:iris-images}).
 
 \begin{figure}[!h] 
     \centering 
@@ -18,7 +18,7 @@ Quindi generalizzando un'entità viene rappresentata come vettore in uno spazio 
     \caption{Tre tipologie di pianta}
     \label{fig:iris-images}
   \end{figure}
-In fase di addestramento vengono utilizzate le feature e le etichette (Fig.~\ref{fig:iris-schema}) di ciascuna pianta e in fase di test l'algoritmo utilizza le caratteristiche apprese per eseguire una classificazione su dati che non ha ricevuto durante il training.
+In fase di addestramento vengono utilizzate le \emph{feature} e le etichette (Fig.~\ref{fig:iris-schema}) di ciascuna pianta e in fase di test l'algoritmo utilizza le caratteristiche apprese per eseguire una classificazione su dati che non ha ricevuto durante il \emph{traininig}.
 
 \begin{figure}[!h] 
     \centering 
@@ -26,22 +26,22 @@ In fase di addestramento vengono utilizzate le feature e le etichette (Fig.~\ref
     \caption{Schema delle feature}
     \label{fig:iris-schema}
   \end{figure}
-L'introduzione al machine learning è utile per presentare le applicazioni di tale disciplina utilizzate ai fini del progetto:
+L'introduzione al \emph{machine learning} è utile per presentare le applicazioni di tale disciplina utilizzate ai fini del progetto:
 \begin{itemize}
-    \item Clustering
-    \item PCA
-    \item Reti neurali
-    \item Deep learning
-    \item Autoencoder
+    \item \textbf{Clustering}
+    \item \textbf{PCA}
+    \item \textbf{Reti neurali}
+    \item \textbf{Deep learning}
+    \item \textbf{Autoencoder}
 \end{itemize}
 Gli elementi citati in precedenza vengono introdotti e trattati nelle sezioni seguenti.
 
 \newpage
 
 \section{K-means}
-Il K-means è un algoritmo non supervisionato che viene utilizzato per il clustering, ossia per la suddivisione del dataset in gruppi che contengono caratteristiche simili.
+Il K-means è un algoritmo non supervisionato che viene utilizzato per il \emph{clustering}, ossia per la suddivisione del \emph{dataset} in gruppi che contengono caratteristiche simili.
 Suddivide un set di dati in gruppi simili sulla base della distanza tra i loro centroidi. 
-Il centroide, è la media di tutti i punti presenti all'interno del cluster.\\Il numero K sta a indicare quanti cluster dovranno essere assegnati dall'algoritmo, più il numero di cluster è elevato più essi saranno piccoli e dettagliati al contrario se i cluster sono pochi il risultato saranno dei cluster più grandi ma meno dettagliati (Fig.~\ref{fig:k-means}).
+Il centroide, è la media di tutti i punti presenti all'interno del \emph{cluster}.\\Il numero K sta a indicare quanti \emph{cluster} dovranno essere assegnati dall'algoritmo, più il numero di \emph{cluster} è elevato più essi saranno piccoli e dettagliati al contrario se i \emph{cluster} sono pochi il risultato saranno dei \emph{cluster} più grandi ma meno dettagliati (Fig.~\ref{fig:k-means}).
 
 \begin{figure}[!h] 
     \centering 
@@ -49,11 +49,11 @@ Il centroide, è la media di tutti i punti presenti all'interno del cluster.\\Il
     \caption{Esempio di clustering}
     \label{fig:k-means}
   \end{figure}
-Ad esempio se volessimo clusterizzare un insieme di animali composto da mammiferi e volatili utilizzando K=2 l'algoritmo creerebbe due cluster uno contenente i mammiferi e uno i volatili  (cluster grandi e poco dettagliati).
-Se aumentassimo il numero di cluster l'algoritmo sarebbe in grado di essere più specifico andando a creare una quantità molto più elevata di cluster ben dettagliati contenenti meno elementi.
+Ad esempio se volessimo clusterizzare un insieme di animali composto da mammiferi e volatili utilizzando K=2 l'algoritmo creerebbe due \emph{cluster} uno contenente i mammiferi e uno i volatili  (\emph{cluster} grandi e poco dettagliati).
+Se aumentassimo il numero di \emph{cluster} l'algoritmo sarebbe in grado di essere più specifico andando a creare una quantità molto più elevata di \emph{cluster} ben dettagliati contenenti meno elementi.
 Quindi è importante scegliere con cura il numero iniziale K da assegnare, per semplificare questa operazione esistono dei metodi di supporto:
 \begin{itemize}
-    \item Il metodo del gomito sfrutta l’inerzia, ossia la somma delle distanze al quadrato dei punti dal centroide (SSE, Sum of Squared Errors). Con l'aumento dei cluster, l’inerzia diminuisce, ma dopo un certo punto, la riduzione diventa superflua, venendo a creare una curva a gomito. Il punto in cui la curva si piega indica il numero di cluster da utilizzare.
+    \item Il metodo del gomito sfrutta l’inerzia, ossia la somma delle distanze al quadrato dei punti dal centroide \emph{(SSE, Sum of Squared Errors)}. Con l'aumento dei \emph{cluster}, l’inerzia diminuisce, ma dopo un certo punto, la riduzione diventa superflua, venendo a creare una curva a gomito. Il punto in cui la curva si piega indica il numero di \emph{cluster} da utilizzare.
     
     \begin{figure}[!h] 
         \centering 
@@ -62,12 +62,12 @@ Quindi è importante scegliere con cura il numero iniziale K da assegnare, per s
         \label{fig:gomito}
       \end{figure}
     \newpage
-    \item Il Silhouette Score indica quanto i punti appartenenti a un cluster sono simili tra loro e quanto differiscono dai punti contenuti negli altri cluster.
-    Varia tra -1 e 1, se il valore è vicino a 1 il punto è all'interno del suo cluster e ben separato dai cluster limitrofi, se è vicino a 0 il punto è confinante tra due cluster infine un valore negativo indica l'assegnazione a un cluster sbagliato.
+    \item Il Silhouette score indica quanto i punti appartenenti a un \emph{cluster} sono simili tra loro e quanto differiscono dai punti contenuti negli altri \emph{cluster}.
+    Varia tra -1 e 1, se il valore è vicino a 1 il punto è all'interno del suo \emph{cluster} e ben separato dai \emph{cluster} limitrofi, se è vicino a 0 il punto è confinante tra due \emph{cluster} infine un valore negativo indica l'assegnazione a un \emph{cluster} sbagliato.
 \end{itemize}
 
 \section{PCA}
-L'analisi dei componenti principali è un algoritmo non supervisionato in grado di estrarre le informazioni più rilevanti da dataset di grandi dimensioni, riducendo così la complessità del modello ed evitando che si presenti il fenomeno della "maledizione della dimensionalità"\footcite{site:PCA}.\\La maledizione della dimensionalità si verifica all'aumentare della dimensionalità dei dati: con l'aumentare delle dimensioni, il volume dello spazio aumenta in maniera esponenziale, rendendo difficile l'elaborazione da parte degli algoritmi di machine learning, che dovranno lavorare su dati molto sparsi con conseguenze negative per le prestazioni.\\Tra gli ulteriori vantaggi che hanno portato all'adozione della PCA sono presenti la riduzione dei tempi di calcolo dovuta alla minor quantità di feature e la possibilità di visualizzare i risultati del clustering su un grafico cartesiano bidimensionale (Fig.~\ref{fig:pca-chart}) aumentando il livello di comprensione dell'utente.
+L'analisi dei componenti principali è un algoritmo non supervisionato in grado di estrarre le informazioni più rilevanti da \emph{dataset} di grandi dimensioni, riducendo così la complessità del modello ed evitando che si presenti il fenomeno della "maledizione della dimensionalità"\footcite{site:PCA}.\\La maledizione della dimensionalità si verifica all'aumentare della dimensionalità dei dati: con l'aumentare delle dimensioni, il volume dello spazio aumenta in maniera esponenziale, rendendo difficile l'elaborazione da parte degli algoritmi di \emph{machine learning}, che dovranno lavorare su dati molto sparsi con conseguenze negative per le prestazioni.\\Tra gli ulteriori vantaggi che hanno portato all'adozione della PCA sono presenti la riduzione dei tempi di calcolo dovuta alla minor quantità di \emph{feature} e la possibilità di visualizzare i risultati del \emph{clustering} su un grafico cartesiano bidimensionale (Fig.~\ref{fig:pca-chart}) aumentando il livello di comprensione dell'utente.
 
 \begin{figure}[!h] 
     \centering 
@@ -79,7 +79,7 @@ L'analisi dei componenti principali è un algoritmo non supervisionato in grado 
 \newpage
 
 \section{Reti neurali}
-Le reti neurali (Fig.~\ref{fig:rete-neurale}) sono un processo di machine learning che sfrutta nodi interconnessi tra di loro (anche chiamati neuroni) in una struttura a strati ispirata al cervello umano (da qui neural network).
+Le reti neurali (Fig.~\ref{fig:rete-neurale}) sono un processo di \emph{machine learning} che sfrutta nodi interconnessi tra di loro (anche chiamati neuroni) in una struttura a strati ispirata al cervello umano (da qui \emph{neural network}).
 In genere consistono di un sistema adattivo utilizzato dai computer per imparare dagli errori commessi e automigliorarsi\footcite{site:rete-neurale}.
 
 \begin{figure}[!h] 
@@ -92,23 +92,23 @@ In genere consistono di un sistema adattivo utilizzato dai computer per imparare
 \subsubsection{Struttura}
 All'interno di una rete neurale sono presenti:
 \begin{itemize}
-    \item Input layer: riceve l'input che la rete deve elaborare.
-    \item Hidden layer: possono essere uno o più e si occupano della elaborazione del dato in input.
-    \item Output layer: mostra l'output dell'elaborazione.
+    \item \textbf{Input layer}: riceve l'\emph{input} che la rete deve elaborare.
+    \item \textbf{Hidden layer}: possono essere uno o più e si occupano della elaborazione del dato in \emph{input}.
+    \item \textbf{Output layer}: mostra l'\emph{output} dell'elaborazione.
 \end{itemize}
 
 \subsection{Apprendimento}
-Gli strati densi (dense layers) sono alla base della rete neurale e sono composti dai neuroni.
-Ogni layer è interconnesso con lo strato che lo precede e con quello successivo, in particolare ogni neurone dello strato è connesso a ogni neurone dello strato successivo.
+Gli strati densi (\emph{dense layer}) sono alla base della rete neurale e sono composti dai neuroni.
+Ogni \emph{layer} è interconnesso con lo strato che lo precede e con quello successivo, in particolare ogni neurone dello strato è connesso a ogni neurone dello strato successivo.
 
 \subsubsection{Funzionamento del neurone}
 
 \begin{itemize}
     \item Ogni connessione ha un peso che indica la forza della connessione e il suo valore può essere positivo o negativo.
-    \item L'input che un neurone riceve da ciascuno dei neuroni a cui è connesso si calcola moltiplicando il segnale proveniente da quel neurone per il peso sulla connessione.
-    \item L'input totale del neurone è la sommatoria delle attivazioni che il neurone riceve dagli altri neuroni.
+    \item L'\emph{input} che un neurone riceve da ciascuno dei neuroni a cui è connesso si calcola moltiplicando il segnale proveniente da quel neurone per il peso sulla connessione.
+    \item L'\emph{input} totale del neurone è la sommatoria delle attivazioni che il neurone riceve dagli altri neuroni.
     \item Lo stato di attivazione finale viene calcolato attraverso una funzione di attivazione (ad esempio RELU o sigmoide, Fig.~\ref{fig:relu-sigmoid}).
-    \item L'output dei neuroni viene inviato ai neuroni successivi\footcite{LectureA}.
+    \item L'\emph{output} dei neuroni viene inviato ai neuroni successivi\footcite{LectureA}.
 \end{itemize}
 Lo schema successivo mostra il procedimento appena descritto (Fig.~\ref{fig:neurone})
 
@@ -129,8 +129,8 @@ Lo schema successivo mostra il procedimento appena descritto (Fig.~\ref{fig:neur
 \newpage
 
 \subsubsection{Fasi di apprendimento} 
-Inizialmente la rete riceve in input il vettore, i pesi e i bias vengono decisi in maniera casuale.
-I dati si spostano di strato in strato fino a raggiungere quello di output (forward propagation, Fig.~\ref{fig:propagation}), successivamente la funzione di perdita misura il grado di errore e tramite la backward propagation avviene l'Aggiornamento dei pesi.
+Inizialmente la rete riceve in \emph{input} il vettore, i pesi e i \emph{bias} vengono decisi in maniera casuale.
+I dati si spostano di strato in strato fino a raggiungere quello di \emph{output} (\emph{forward propagation}, Fig.~\ref{fig:propagation}), successivamente la funzione di perdita misura il grado di errore e tramite la \emph{backward propagation} avviene l'Aggiornamento dei pesi.
 Queste fasi vengono ripetute per un numero adeguato di volte (epoche) per ridurre man mano l'errore.
 
 \begin{figure}[!h] 
@@ -142,7 +142,7 @@ Queste fasi vengono ripetute per un numero adeguato di volte (epoche) per ridurr
 
 
 \subsection{Classificazione}
-I dati da classificare vengono inseriti all'interno della rete neurale che fornisce in output la classe di appartenenza di ciascun dato (Fig.~\ref{fig:classificazione}).
+I dati da classificare vengono inseriti all'interno della rete neurale che fornisce in \emph{output} la classe di appartenenza di ciascun dato (Fig.~\ref{fig:classificazione}).
 
 \begin{figure}[!h] 
     \centering 
@@ -154,7 +154,7 @@ I dati da classificare vengono inseriti all'interno della rete neurale che forni
 \newpage
 
 \section{Deep learning}
-Con il termine deep learning si identificano reti neurali con un numero di strati nascosti maggiore o uguale a due (Fig.~\ref{fig:deep-learning}).
+Con il termine \emph{deep learning} si identificano reti neurali con un numero di strati nascosti maggiore o uguale a due (Fig.~\ref{fig:deep-learning}).
 
 \begin{figure}[!h] 
     \centering 
@@ -164,7 +164,7 @@ Con il termine deep learning si identificano reti neurali con un numero di strat
   \end{figure}
 
 \subsection{Convolutional neural network}
-Le reti neurali convoluzionali (CNN, Fig.~\ref{fig:cnn}) sono un esempio di deep learning, esse sfruttano dei layer convoluzionali per eseguire la classificazione di dati tridimensionali, come ad esempio le classiche immagini raster.
+Le reti neurali convoluzionali (CNN, Fig.~\ref{fig:cnn}) sono un esempio di \emph{deep learning}, esse sfruttano dei \emph{layer} convoluzionali per eseguire la classificazione di dati tridimensionali, come ad esempio le classiche immagini raster.
 
 \begin{figure}[!h] 
     \centering 
@@ -176,8 +176,8 @@ Le reti neurali convoluzionali (CNN, Fig.~\ref{fig:cnn}) sono un esempio di deep
 \newpage
 
 \subsubsection{Layer convoluzionali}
-I layer convoluzionali hanno come scopo l'estrazione di feature dalle immagini (texture, bordi, ecc...).
-Per spiegare il funzionamento di un layer convoluzionale è necessario introdurre la nozione di kernel.\\Il kernel (filtro, Fig.~\ref{fig:kernel}) è una matrice contenente dei pesi, che viene spostata lungo l'immagine effettuando una convoluzione in ogni posizione.
+I \emph{layer} convoluzionali hanno come scopo l'estrazione di \emph{feature} dalle immagini (texture, bordi, ecc...).
+Per spiegare il funzionamento di un \emph{layer} convoluzionale è necessario introdurre la nozione di \emph{kernel}.\\Il \emph{kernel} (filtro, Fig.~\ref{fig:kernel}) è una matrice contenente dei pesi, che viene spostata lungo l'immagine effettuando una convoluzione in ogni posizione.
 
 \begin{figure}[!h] 
     \centering 
@@ -185,7 +185,7 @@ Per spiegare il funzionamento di un layer convoluzionale è necessario introdurr
     \caption{Funzionamento del kernel}
     \label{fig:kernel}
   \end{figure}
-Esempio con kernel di dimensioni 3x3:
+Esempio con \emph{kernel} di dimensioni 3x3:
 
 \begin{lstlisting}[language=Python, frame=none]
     [ -1,  0,  1 ]
@@ -195,8 +195,8 @@ Esempio con kernel di dimensioni 3x3:
 
 
 \begin{enumerate}
-    \item Posizionamento del filtro: il kernel viene inserito sulla prima zona 3x3 dell'immagine.
-    \item Moltiplicazione di ogni elemento: ogni peso presente nel kernel viene moltiplicato per il valore corrispondente contenuto nella porzione di immagine.
+    \item Posizionamento del filtro: il \emph{kernel} viene inserito sulla prima zona 3x3 dell'immagine.
+    \item Moltiplicazione di ogni elemento: ogni peso presente nel \emph{kernel} viene moltiplicato per il valore corrispondente contenuto nella porzione di immagine.
     \newpage
     \begin{lstlisting}[language=Python, frame=none]
         PORZIONE DI IMMAGINE
@@ -210,15 +210,15 @@ Esempio con kernel di dimensioni 3x3:
         (-1 * 70) + (0 * 80) + (1 * 90)
             
     \end{lstlisting}
-    \item Output della convoluzione: tutti i risultati delle moltiplicazioni vengono sommati tra di loro e il valore ottenuto viene posizionato nella feature map nel punto che corrisponde alla regione dell'immagine elaborata.
+    \item \emph{Output} della convoluzione: tutti i risultati delle moltiplicazioni vengono sommati tra di loro e il valore ottenuto viene posizionato nella \emph{feature map} nel punto che corrisponde alla regione dell'immagine elaborata.
     \begin{lstlisting}[language=Python, frame=none]
         (-10) + (0) + (30) +
         (-40) + (0) + (60) +
         (-70) + (0) + (90) = 60
     \end{lstlisting}
-    \item Riposizionamento del filtro: il kernel viene riposizionato spostandolo di uno o più pixel (stride) e il flusso si ripete fino alla copertura completa dell'immagine.
+    \item Riposizionamento del filtro: il \emph{kernel} viene riposizionato spostandolo di uno o più pixel (\emph{stride}) e il flusso si ripete fino alla copertura completa dell'immagine.
 \end{enumerate}
-L'otuput del layer convoluzionale è una serie di feature map ognuna corrispondente a ciascun filtro.
+L'otuput del \emph{layer} convoluzionale è una serie di \emph{feature map} ognuna corrispondente a ciascun filtro.
 
 \begin{lstlisting}[language=Python, frame=none]
     conv_layer= Conv2D(32, (3, 3), activation='relu', padding='same')(input_img)
@@ -226,14 +226,14 @@ L'otuput del layer convoluzionale è una serie di feature map ognuna corrisponde
 
 \begin{itemize}
     \item 32 rappresenta il numero di filtri.
-    \item (3,3) rappresenta la dimensione dei kernel.
+    \item (3,3) rappresenta la dimensione dei \emph{kernel}.
     \item activation='relu' indica che come funzione di attivazione verrà utilizzata relu.
-    \item padding='same' consente di mantenere la dimensione dell'immagine in input anche dopo l'applicazione dei filtri
+    \item padding='same' consente di mantenere la dimensione dell'immagine in \emph{input} anche dopo l'applicazione dei filtri
 \end{itemize}
 
 
 \subsubsection{Layer di pooling}
-I layer di pooling (Fig.~\ref{fig:pooling}) servono per ridurre le dimensioni delle feature maps mantenendo le caratteristiche importanti e riducendo di conseguenza la complessità di calcolo.
+I \emph{layer} di \emph{pooling} (Fig.~\ref{fig:pooling}) servono per ridurre le dimensioni delle \emph{feature map} mantenendo le caratteristiche importanti e riducendo di conseguenza la complessità di calcolo.
 
 
 \begin{figure}[!h] 
@@ -246,7 +246,7 @@ I layer di pooling (Fig.~\ref{fig:pooling}) servono per ridurre le dimensioni de
 
 
 \subsubsection{Funzionamento di un layer di pooling}
-Esempio di Max pooling con matrici 2x2 e stride di 2 pixel
+Esempio di \emph{Max pooling} con matrici 2x2 e \emph{stride} di 2 pixel
 
 
 \begin{lstlisting}[language=Python, frame=none]
@@ -258,7 +258,7 @@ Esempio di Max pooling con matrici 2x2 e stride di 2 pixel
 \end{lstlisting}
 
 \begin{enumerate}
-    \item Divisione della feature map in matrici 2x2:
+    \item Divisione della \emph{feature map} in matrici 2x2:
     \begin{lstlisting}[language=Python, frame=none]
     
         [ 1, 3 ]
@@ -283,13 +283,13 @@ Esempio di Max pooling con matrici 2x2 e stride di 2 pixel
         max(1, 2, 4, 3) = 4
     \end{lstlisting}
 
-    \item Creazione di una nuova feature map contenente i valori massimi:
+    \item Creazione di una nuova \emph{feature map} contenente i valori massimi:
     \begin{lstlisting}[language=Python, frame=none]
         [ 6, 8 ]
         [ 3, 4 ]
     \end{lstlisting}
 \end{enumerate}
-L'output del layer di pooling in questo caso è una feature map ridotta da 4x4 a 2x2.
+L'\emph{output} del \emph{layer} di \emph{pooling} in questo caso è una \emph{feature map} ridotta da 4x4 a 2x2.
 
 \begin{lstlisting}[language=Python, frame=none]
     MaxPooling2D((2, 2), padding='same')(x)
@@ -298,7 +298,7 @@ L'output del layer di pooling in questo caso è una feature map ridotta da 4x4 a
 \newpage
 
 \section{Autoencoder}
-L'autoencoder (Fig.~\ref{fig:autoencoder-teoria}) è un neural network in grado di comprimere il suo input e di ricostruirlo in maniera similare come output. \footcite[p.~499]{Goodfellow-et-al-2016}.
+L'\emph{auoencoder} (Fig.~\ref{fig:autoencoder-teoria}) è un \emph{neural network} in grado di comprimere il suo \emph{input} e di ricostruirlo in maniera similare come \emph{output}. \footcite[p.~499]{Goodfellow-et-al-2016}.
 
 \begin{figure}[!h] 
     \centering 
@@ -308,21 +308,21 @@ L'autoencoder (Fig.~\ref{fig:autoencoder-teoria}) è un neural network in grado 
   \end{figure}
 L'architettura si compone di due parti principali:
 \begin{enumerate}
-    \item Encoder: comprime l'input riducendolo di dimensionalità (codifica).
-    \item Decoder: ricostruisce l'input inziale partendo dalla codifica fatta dall'encoder
+    \item \textbf{Encoder}: comprime l'\emph{input} riducendolo di dimensionalità (codifica).
+    \item \textbf{Decoder}: ricostruisce l'\emph{input} inziale partendo dalla codifica fatta dall'\emph{encoder}
 \end{enumerate}
-Il bottleneck o latent space contiene la codifica e sta nel mezzo delle due componenti; è il punto di arrivo del encoder e la partenza del decoder.
+Il \emph{bottleneck} o \emph{latent space} contiene la codifica e sta nel mezzo delle due componenti; è il punto di arrivo del \emph{encoder} e la partenza del \emph{decoder}.
 
 \subsection{Funzionamento}
 \begin{enumerate}
-    \item L'encoder riceve un input \( x \) e lo codifica creando una funzione \( z= f(x) \)
-    \item Il bottleneck contiene la codifica \( z \)
-    \item Il decoder cerca di decodificare \( z \) tramite la funzione \( g \) ottenendo come output \( \hat{x} = g(z) \).
+    \item L'\emph{encoder} riceve un \emph{input} \( x \) e lo codifica creando una funzione \( z= f(x) \)
+    \item Il \emph{bottleneck} contiene la codifica \( z \)
+    \item Il \emph{decoder} cerca di decodificare \( z \) tramite la funzione \( g \) ottenendo come \emph{output} \( \hat{x} = g(z) \).
 \end{enumerate}
-Il processo di apprendimento ha come obiettivo minimizzare la loss function che misura la differenza tra input iniziale e output ricostruito dal decoder.
+Il processo di apprendimento ha come obiettivo minimizzare la loss function che misura la differenza tra \emph{input} iniziale e \emph{output} ricostruito dal \emph{decoder}.
 \[ L(x, \hat{x}) = ||x - \hat{x}||^2 \]
-Nell'esempio viene utilizzata la MSE (Mean Squared Error).
-Ai fini del progetto la parte interessante dell'autoencoder è proprio l'encoder poiché comprime l'immagine in input lasciando un set di features nel bottleneck; che possono essere utilizzate successivamente per il clustering.
+Nell'esempio viene utilizzata la \emph{MSE (Mean Squared Error)}.
+Ai fini del progetto la parte interessante dell'\emph{auoencoder} è proprio l'\emph{encoder} poiché comprime l'immagine in \emph{input} lasciando un set di \emph{feature} nel \emph{bottleneck}; che possono essere utilizzate successivamente per il \emph{clustering}.
 
 
 
