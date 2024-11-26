@@ -6,11 +6,11 @@ Da un punto di vista più filosofico il \emph{machine learning} è interessante 
 \begin{itemize}
     \item \textbf{Apprendimento supervisionato}: gli algoritmi che appartengono a questa categoria apprendono quali risultati generare seguendo la guida di un set di dati etichettati e con un \emph{output} predefinito\footcite{site:machine-learning}.
 
-    \item \textbf{Apprendimento non supervisionato}: gli algoritmi non supervisionati, anche conosciuti come apprendimento automatico, analizzano e raggruppano \emph{dataset} non etichettati. Questi algoritmi riconoscono raggruppamenti di dati (\emph{cluster}) senza la necessità dell'intervento umano\footcite{site:machine-learning}.
+    \item \textbf{Apprendimento non supervisionato}: gli algoritmi non supervisionati, anche conosciuti come apprendimento automatico, analizzano e raggruppano \emph{\gls{dataset}} non etichettati. Questi algoritmi riconoscono raggruppamenti di dati (\emph{cluster}) senza la necessità dell'intervento umano\footcite{site:machine-learning}.
 \end{itemize}
 Tali algoritmi vengono utilizzati nel progetto per il processo di classificazione.\\
 La classificazione è un metodo che consente di prevedere a quale classe un determinato \emph{input} appartenga. 
-Quindi generalizzando un'entità viene rappresentata come vettore in uno spazio delle \emph{feature}, tipicamente \( R^n \), successivamente vengono eseguite delle operazioni sul vettore che producono un valore preso da un insieme di etichette L noto a priori, il classificatore è quindi una funzione \( R^n \rightarrow L \).\\Un classico esempio di classificazione è fornito dal \emph{dataset} Iris\footcite{site:iris-dataset}, è uno dei primi \emph{dataset} utilizzati in letteratura per sperimentare i metodi di classificazione; contiene 3 classi composte da 50 istanze ciascuna, ogni classe si riferisce a un tipologia differente di iris (Fig.~\ref{fig:iris-images}).
+Quindi generalizzando un'entità viene rappresentata come vettore in uno spazio delle \emph{\gls{feature}}, tipicamente \( R^n \), successivamente vengono eseguite delle operazioni sul vettore che producono un valore preso da un insieme di etichette L noto a priori, il classificatore è quindi una funzione \( R^n \rightarrow L \).\\Un classico esempio di classificazione è fornito dal \emph{\gls{dataset}} Iris\footcite{site:iris-dataset}, è uno dei primi \emph{\gls{dataset}} utilizzati in letteratura per sperimentare i metodi di classificazione; contiene 3 classi composte da 50 istanze ciascuna, ogni classe si riferisce a un tipologia differente di iris (Fig.~\ref{fig:iris-images}).
 
 \begin{figure}[!h] 
     \centering 
@@ -18,7 +18,7 @@ Quindi generalizzando un'entità viene rappresentata come vettore in uno spazio 
     \caption{Tre tipologie di pianta}
     \label{fig:iris-images}
   \end{figure}
-In fase di addestramento vengono utilizzate le \emph{feature} e le etichette (Fig.~\ref{fig:iris-schema}) di ciascuna pianta e in fase di test l'algoritmo utilizza le caratteristiche apprese per eseguire una classificazione su dati che non ha ricevuto durante il \emph{traininig}.
+In fase di addestramento vengono utilizzate le \emph{\gls{feature}} e le etichette (Fig.~\ref{fig:iris-schema}) di ciascuna pianta e in fase di test l'algoritmo utilizza le caratteristiche apprese per eseguire una classificazione su dati che non ha ricevuto durante il \emph{traininig}.
 
 \begin{figure}[!h] 
     \centering 
@@ -39,7 +39,7 @@ Gli elementi citati in precedenza vengono introdotti e trattati nelle sezioni se
 \newpage
 
 \section{K-means}
-Il K-means è un algoritmo non supervisionato che viene utilizzato per il \emph{clustering}, ossia per la suddivisione del \emph{dataset} in gruppi che contengono caratteristiche simili.
+Il K-means è un algoritmo non supervisionato che viene utilizzato per il \emph{clustering}, ossia per la suddivisione del \emph{\gls{dataset}} in gruppi che contengono caratteristiche simili.
 Suddivide un set di dati in gruppi simili sulla base della distanza tra i loro centroidi. 
 Il centroide, è la media di tutti i punti presenti all'interno del \emph{cluster}.\\Il numero K sta a indicare quanti \emph{cluster} dovranno essere assegnati dall'algoritmo, più il numero di \emph{cluster} è elevato più essi saranno piccoli e dettagliati al contrario se i \emph{cluster} sono pochi il risultato saranno dei \emph{cluster} più grandi ma meno dettagliati (Fig.~\ref{fig:k-means}).
 
@@ -67,7 +67,7 @@ Quindi è importante scegliere con cura il numero iniziale K da assegnare, per s
 \end{itemize}
 
 \section{PCA}
-L'analisi dei componenti principali è un algoritmo non supervisionato in grado di estrarre le informazioni più rilevanti da \emph{dataset} di grandi dimensioni, riducendo così la complessità del modello ed evitando che si presenti il fenomeno della "maledizione della dimensionalità"\footcite{site:PCA}.\\La maledizione della dimensionalità si verifica all'aumentare della dimensionalità dei dati: con l'aumentare delle dimensioni, il volume dello spazio aumenta in maniera esponenziale, rendendo difficile l'elaborazione da parte degli algoritmi di \emph{machine learning}, che dovranno lavorare su dati molto sparsi con conseguenze negative per le prestazioni.\\Tra gli ulteriori vantaggi che hanno portato all'adozione della PCA sono presenti la riduzione dei tempi di calcolo dovuta alla minor quantità di \emph{feature} e la possibilità di visualizzare i risultati del \emph{clustering} su un grafico cartesiano bidimensionale (Fig.~\ref{fig:pca-chart}) aumentando il livello di comprensione dell'utente.
+L'analisi dei componenti principali è un algoritmo non supervisionato in grado di estrarre le informazioni più rilevanti da \emph{\gls{dataset}} di grandi dimensioni, riducendo così la complessità del modello ed evitando che si presenti il fenomeno della "maledizione della dimensionalità"\footcite{site:PCA}.\\La maledizione della dimensionalità si verifica all'aumentare della dimensionalità dei dati: con l'aumentare delle dimensioni, il volume dello spazio aumenta in maniera esponenziale, rendendo difficile l'elaborazione da parte degli algoritmi di \emph{machine learning}, che dovranno lavorare su dati molto sparsi con conseguenze negative per le prestazioni.\\Tra gli ulteriori vantaggi che hanno portato all'adozione della PCA sono presenti la riduzione dei tempi di calcolo dovuta alla minor quantità di \emph{\gls{feature}} e la possibilità di visualizzare i risultati del \emph{clustering} su un grafico cartesiano bidimensionale (Fig.~\ref{fig:pca-chart}) aumentando il livello di comprensione dell'utente.
 
 \begin{figure}[!h] 
     \centering 
@@ -176,7 +176,7 @@ Le reti neurali convoluzionali (CNN, Fig.~\ref{fig:cnn}) sono un esempio di \emp
 \newpage
 
 \subsubsection{Layer convoluzionali}
-I \emph{layer} convoluzionali hanno come scopo l'estrazione di \emph{feature} dalle immagini (texture, bordi, ecc...).
+I \emph{layer} convoluzionali hanno come scopo l'estrazione di \emph{\gls{feature}} dalle immagini (texture, bordi, ecc...).
 Per spiegare il funzionamento di un \emph{layer} convoluzionale è necessario introdurre la nozione di \emph{kernel}.\\Il \emph{kernel} (filtro, Fig.~\ref{fig:kernel}) è una matrice contenente dei pesi, che viene spostata lungo l'immagine effettuando una convoluzione in ogni posizione.
 
 \begin{figure}[!h] 
@@ -322,7 +322,7 @@ Il \emph{bottleneck} o \emph{latent space} contiene la codifica e sta nel mezzo 
 Il processo di apprendimento ha come obiettivo minimizzare la loss function che misura la differenza tra \emph{input} iniziale e \emph{output} ricostruito dal \emph{decoder}.
 \[ L(x, \hat{x}) = ||x - \hat{x}||^2 \]
 Nell'esempio viene utilizzata la \emph{MSE (Mean Squared Error)}.
-Ai fini del progetto la parte interessante dell'\emph{auoencoder} è proprio l'\emph{encoder} poiché comprime l'immagine in \emph{input} lasciando un set di \emph{feature} nel \emph{bottleneck}; che possono essere utilizzate successivamente per il \emph{clustering}.
+Ai fini del progetto la parte interessante dell'\emph{auoencoder} è proprio l'\emph{encoder} poiché comprime l'immagine in \emph{input} lasciando un set di \emph{\gls{feature}} nel \emph{bottleneck}; che possono essere utilizzate successivamente per il \emph{clustering}.
 
 
 

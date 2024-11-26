@@ -4,9 +4,9 @@
 \intro{L'analisi dei requisiti è alla base della comprensione del prodotto da sviluppare, è utile per chiarire eventuali dubbi e per procedere in maniera spedita evitando perdite di tempo future}\\
 
 \section{Casi d'uso}
-Per rendere più chiari i casi d'uso sono stati utilizzati dei diagrammi di tipo \gls{uml}.
+Per rendere più chiari i casi d'uso sono stati utilizzati dei diagrammi di tipo \gls{UML}\glsfirstoccur.
 Questo tipo di diagrammi descrivono funzioni e servizi forniti dal sistema agli attori che lo utilizzano.
-Essendo il progetto l'implementazione di un \emph{workflow} automatico, le interazioni dell'utente devono essere minime.
+Essendo il progetto l'implementazione di un \emph{\gls{workflow}} automatico, le interazioni dell'utente devono essere minime.
 Per questo i casi d'uso sono pochi e molto sintetici.
 
 \begin{figure}[!h] 
@@ -19,7 +19,7 @@ Per questo i casi d'uso sono pochi e molto sintetici.
     \usecaseactors{Programmatore}
     \usecasepre{Il programmatore ha avviato l'ambiente di programmazione integrato}
     \usecasedesc{Avvio delle componenti base dell'applicativo}
-    \usecasepost{Il sistema è pronto per eseguire il \emph{workflow}}
+    \usecasepost{Il sistema è pronto per eseguire il \emph{\gls{workflow}}}
     \label{uc:scenario-principale}
 \end{usecase}
 
@@ -32,7 +32,7 @@ Per questo i casi d'uso sono pochi e molto sintetici.
 \begin{usecase}{1}{Acquisizione screenshot} 
     \usecaseactors{Programmatore} 
     \usecasepre{Il \emph{web scraper} ha già raccolto i link alle pagine dei siti web delle aziende} 
-    \usecasedesc{Il programmatore prepara il \emph{workflow} per acquisire in maniera automatica gli screenshot delle pagine raccolte in precedenza} 
+    \usecasedesc{Il programmatore prepara il \emph{\gls{workflow}} per acquisire in maniera automatica gli screenshot delle pagine raccolte in precedenza} 
     \usecasepost{Gli screenshot vengono salvati nel database, pronti per la fase di analisi e classificazione} 
     \label{uc:acquisizione-screenshot} 
 \end{usecase}
@@ -48,7 +48,7 @@ Per questo i casi d'uso sono pochi e molto sintetici.
 \begin{usecase}{2}{Clusterizzazione degli screenshot} 
     \usecaseactors{Programmatore} 
     \usecasepre{Gli screenshot delle pagine sono stati acquisiti e salvati nel database}
-    \usecasedesc{Il programmatore avvia il processo di \emph{clustering}, che organizza gli screenshot in \emph{cluster} in base alle \emph{feature}\glsfirstoccur estratte} 
+    \usecasedesc{Il programmatore avvia il processo di \emph{clustering}, che organizza gli screenshot in \emph{cluster} in base alle \emph{\gls{feature}\glsfirstoccur estratte}}
     \usecasepost{Gli screenshot vengono clusterizzati e inseriti in apposite cartelle} 
     \label{uc:clusterizzazione-screenshot} 
 \end{usecase}
@@ -62,7 +62,7 @@ Per questo i casi d'uso sono pochi e molto sintetici.
 \begin{usecase}{3}{Valutazione qualitativa e classificazione} 
     \usecaseactors{Programmatore} 
     \usecasepre{Gli screenshot sono stati inseriti in cartelle} 
-    \usecasedesc{Lo sviluppatore addestra l'IA classificativa sfruttando i cluster precedentemente creati, e creando un \emph{dataset}} 
+    \usecasedesc{Lo sviluppatore addestra l'IA classificativa sfruttando i cluster precedentemente creati, e creando un \emph{\gls{dataset}}} 
     \usecasepost{Ogni sito ottiene un punteggio qualitativo che viene salvato nel database per operazioni future} 
     \label{uc:IA-classificativa} 
 \end{usecase}

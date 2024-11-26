@@ -14,7 +14,7 @@ L'architettura (Fig.~\ref{fig:schema-architettura}) pensata prevede l'utilizzo d
     \item Inviare e-mail promozionali.
 \end{enumerate}
 La suddivisione in componenti consente di avere un codice più strutturato e specializzato nell'assolvimento di determinati compiti; rende anche la comprensione da parte di altri programmatori più rapida e chiara.
-I vari moduli comunicano con il database di SalesCRM attraverso l'utilizzo di API che eseguono interrogazioni e inserimenti.
+I vari moduli comunicano con il database di SalesCRM attraverso l'utilizzo di \gls{API} che eseguono interrogazioni e inserimenti.
 Nel caso della comunicazione tra il modulo di \emph{clustering} e quello di valutazione la condivisione di dati avviene in maniera diretta utilizzando la memoria dello stesso PC; questa modalità non si rivela problematica poiché garantisce uno scambio rapido di informazioni che deve essere svolto solo ed esclusivamente in fase di addestramento.
 
 \begin{figure}[!h] 
@@ -28,7 +28,7 @@ Nel caso della comunicazione tra il modulo di \emph{clustering} e quello di valu
 \newpage
 
 \section{Cattura immagini}
-La prima fase del \emph{workflow} (Fig.~\ref{fig:schema-cattura}) è composta da uno script Python che usufruisce della libreria Pyppeteer per acquisire gli screenshot dei siti contenuti nel database.
+La prima fase del \emph{\gls{workflow}} (Fig.~\ref{fig:schema-cattura}) è composta da uno script Python che usufruisce della libreria Pyppeteer per acquisire gli screenshot dei siti contenuti nel database.
 Più precisamente un \emph{web scraper} già implementato raccoglie i link delle pagine web dei clienti potenziali, successivamente li carica nel database di SalesCRM, dove verranno infine letti dallo script.
 Per funzionare Pyppeteer necessita di chromium, dopo aver effettuato il controllo per verificare se esso sia presente o meno procede con la lettura dei link. 
 L'automazione apre ogni indirizzo, aspetta qualche secondo e scatta uno screenshot. 
@@ -44,10 +44,10 @@ Tutte le immagini vengono poi convertite in formato Base64 per adattarsi alle ta
 \newpage
 
 \section{Studio preliminare per l'estrazione delle feature}
-L'estrazione delle \emph{feature} è una fase fondamentale e necessita pertanto di uno studio più approfondito.
+L'estrazione delle \emph{\gls{feature}} è una fase fondamentale e necessita pertanto di uno studio più approfondito.
 
 \subsection{Tentativi con autoencoder}
-Gli \emph{autoencoder} sono stati utilizzati inizialmente poiché si pensava che la soluzione migliore fosse la creazione di un modello \emph{CNN} che si adattasse completamente alle \emph{feature} presenti nei siti web, ma si è rivelato particolarmente difficile per i motivi seguenti:
+Gli \emph{autoencoder} sono stati utilizzati inizialmente poiché si pensava che la soluzione migliore fosse la creazione di un modello \emph{CNN} che si adattasse completamente alle \emph{\gls{feature}} presenti nei siti web, ma si è rivelato particolarmente difficile per i motivi seguenti:
 \begin{itemize}
   \item Numero elevato di epoche di addestramento.
   \item Studio della quantità e tipologia degli strati.
@@ -78,7 +78,7 @@ Il primo tentativo è stato effettuato utilizzando un \emph{autoencoder} che sfr
 L'\emph{autoencoder} con strati convoluzionali (Fig.~\ref{fig:schema-conv}) ha consentito un netto miglioramento delle prestazioni e un consumo inferiore della memoria tali da poter aumentare le dimensioni delle immagini e implementare nuovamente l'utilizzo del colore.
 Le modifiche non sono state comunque sufficienti per avere un esperienza di utilizzo solida causando:
 \begin{itemize}
-  \item \emph{Overflow} della \emph{V-RAM}\glsfirstoccur se non utilizzato sotto specifiche condizioni.
+  \item \emph{Overflow} della \emph{\gls{V-RAM}}\glsfirstoccur se non utilizzato sotto specifiche condizioni.
   \item Inconsistenza nei \emph{cluster}.
 \end{itemize}
 Viene sotto riportata un immagine in bianco e nero di dimensioni 256*256 ottenuta dal \emph{bottleneck} dell'\emph{autoencoder} per comparare con il modello precedente (Fig.~\ref{fig:conv-ricostruita}).
@@ -125,13 +125,13 @@ Un altro vantaggio dell'utilizzo di strati convoluzionali è la possibilità di 
 \end{figure}
 
 \newpage
-Tramite l'utilizzo delle \emph{feature} estratte dal \emph{bottleneck} è possibile effettuare un \emph{clustering} (Fig.~\ref{fig:cluster-conv})
+Tramite l'utilizzo delle \emph{\gls{feature}} estratte dal \emph{bottleneck} è possibile effettuare un \emph{clustering} (Fig.~\ref{fig:cluster-conv})
 
 
 \begin{figure}[!htbp] 
   \centering 
   \includegraphics[width=0.7\columnwidth]{progettazione/Clusters_conv.png} 
-  \caption{Clustering effettuato utilizzando le feature estratte dall'autoencoder convoluzionale; 20 cluster e 3000 immagini}
+  \caption{Clustering effettuato utilizzando le \gls{feature} estratte dall'autoencoder convoluzionale; 20 cluster e 3000 immagini}
   \label{fig:cluster-conv}
 \end{figure}
 
@@ -179,9 +179,9 @@ Inoltre ogni cella contiene valori compresi tra 0 e 255, per facilitare le opera
 
 
 \subsection{Estrazione delle feature}
-Per ottenere un dato utilizzabile in modo efficace dall'algoritmo di \emph{clustering} è necessario modificare ulteriormente le immagini riducendole a un set di \emph{feature} (Fig.~\ref{fig:featuremaps}).
+Per ottenere un dato utilizzabile in modo efficace dall'algoritmo di \emph{clustering} è necessario modificare ulteriormente le immagini riducendole a un set di \emph{\gls{feature}} (Fig.~\ref{fig:featuremaps}).
 Per adempire a questo compito viene utilizzato un CNN Convolutional Neural Network pre-addestrato chiamato ResNet50 (Fig.~\ref{fig:schema-resnet}).
-Il modello viene caricato senza i top \emph{layer}, ossia gli strati densi addetti alla classificazione, per sfruttare esclusivamente la sua abilità di riduzione in \emph{feature}.
+Il modello viene caricato senza i top \emph{layer}, ossia gli strati densi addetti alla classificazione, per sfruttare esclusivamente la sua abilità di riduzione in \emph{\gls{feature}}.
 
 \begin{figure}[!h] 
   \centering 
@@ -200,10 +200,10 @@ Il modello viene caricato senza i top \emph{layer}, ossia gli strati densi addet
 
 
 \subsection{Applicazione del clustering}
-Le \emph{feature} estratte dai \emph{layer} convoluzionali vengono ridotte a uno stato bidimensionale sfruttando l'analisi dei componenti principali, in questa maniera è possibile visualizzare i risultati del \emph{clustering} su un grafico cartesiano, ridurre i tempi di calcolo e aumentare l'accuratezza delle predizioni; ma al costo di una ovvia perdita di informazioni.
-Successivamente viene applicato l'algoritmo dei K-means per l'effettiva suddivisione del \emph{dataset} in \emph{cluster} (Fig.~\ref{fig:clusters-resnet}).
+Le \emph{\gls{feature}} estratte dai \emph{layer} convoluzionali vengono ridotte a uno stato bidimensionale sfruttando l'analisi dei componenti principali, in questa maniera è possibile visualizzare i risultati del \emph{clustering} su un grafico cartesiano, ridurre i tempi di calcolo e aumentare l'accuratezza delle predizioni; ma al costo di una ovvia perdita di informazioni.
+Successivamente viene applicato l'algoritmo dei K-means per l'effettiva suddivisione del \emph{\gls{dataset}} in \emph{cluster} (Fig.~\ref{fig:clusters-resnet}).
 Le immagini vengono inserite, in base al \emph{cluster} a loro assegnato, nelle rispettive cartelle di appartenenza.
-Questa operazione viene svolta per semplificare lo step successivo in cui lo sviluppatore deve preparare manualmente il \emph{dataset} per l'addestramento supervisionato.
+Questa operazione viene svolta per semplificare lo step successivo in cui lo sviluppatore deve preparare manualmente il \emph{\gls{dataset}} per l'addestramento supervisionato.
 
 \begin{figure}[!h] 
   \centering 
@@ -221,7 +221,7 @@ Questa operazione viene svolta per semplificare lo step successivo in cui lo svi
 
 \subsection{Preparazione del dataset}
 Il programmatore visiona i \emph{cluster} ottenuti precedentemente e verifica quali possono appartenere alle categorie "siti migliorabili" e "siti ottimi"; prepara due cartelle corrispondenti alle categorie e inserisce le immagini che reputa appartenere a ciascun dominio.
-Lo script prepara il \emph{dataset} (Fig.~\ref{fig:struttura-dataset}) secondo la logica seguente:
+Lo script prepara il \emph{\gls{dataset}} (Fig.~\ref{fig:struttura-dataset}) secondo la logica seguente:
 \begin{itemize}
   \item Training, il 70\% delle immagini viene utilizzato per l'addestramento effettivo.
   \item Validation, il 15\% delle immagini viene utilizzato per ottimizzare i parametri del modello.
@@ -237,7 +237,7 @@ Lo script prepara il \emph{dataset} (Fig.~\ref{fig:struttura-dataset}) secondo l
 
 \subsection{Addestramento del modello}
 Viene caricato il modello pre-addestrato ResNet50 escludendo i \emph{top layer}, congelando i pesi e aggiungendo degli strati personalizzati per la classificazione.
-Gli strati di classificazione sono successivamente addestrati utilizzando come \emph{input} le \emph{feature} ricavate dai \emph{layer} convoluzionali congelati di ResNet50. 
+Gli strati di classificazione sono successivamente addestrati utilizzando come \emph{input} le \emph{\gls{feature}} ricavate dai \emph{layer} convoluzionali congelati di ResNet50. 
 
 \subsection{Fine-tuning del modello}
 I \emph{layer} convoluzionali vengono sbloccati e il modello viene addestrato nuovamente nella sua interezza utilizzando un learning rate ridotto in maniera tale da non modificare completamente i pesi del modello preaddestrato.
@@ -250,7 +250,7 @@ Le immagini presenti nel database vengono classificate dal modello e le valutazi
 Le valutazioni vengono lette dal database e tramite Laravel si procede all'invio di mail personalizzate alle aziende che dispongono di siti web che potrebbero essere ancora migliorati.
 
 \section{Database}
-Il database di SalesCRM contiene molte tabelle ma in questa sezione vengono descritte solo quelle utilizzate dal \emph{workflow}.
+Il database di SalesCRM contiene molte tabelle ma in questa sezione vengono descritte solo quelle utilizzate dal \emph{\gls{workflow}}.
 
 \subsection{Domains}
 Questa tabella contiene tutte i siti web (Fig.~\ref{fig:schema-domains}) delle aziende collezionate dal \emph{web scraper} e le informazioni a essi correlati.

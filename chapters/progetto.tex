@@ -5,10 +5,10 @@
 
 \section{Analisi del progetto}
 
-Il progetto si basa sull'integrazione di un nuovo \emph{workflow}\glsfirstoccur all'interno di un applicativo preesistente; lo studente deve occuparsi dello sviluppo di una soluzione in grado di migliorare la portata dell'azienda per quanto riguarda il raggiungimento di nuovi clienti.
+Il progetto si basa sull'integrazione di un nuovo \emph{\gls{workflow}}\glsfirstoccur all'interno di un applicativo preesistente; lo studente deve occuparsi dello sviluppo di una soluzione in grado di migliorare la portata dell'azienda per quanto riguarda il raggiungimento di nuovi clienti.
 
 \subsection{SalesCRM}
-SalesCRM è il CRM che viene utilizzato dai commerciali interni all'azienda; contiene tutte le informazioni relative ai contatti che sono stati raggiunti dal reparto vendite. 
+SalesCRM è il \gls{CRM} che viene utilizzato dai commerciali interni all'azienda; contiene tutte le informazioni relative ai contatti che sono stati raggiunti dal reparto vendite. 
 Gli utenti sono in grado di immagazzinare i dati raccolti su clienti e potenziali clienti tramite un interfaccia intuitiva sviluppata utilizzando \nameref{tec:Laravel} e \nameref{tec:Filament}.
 
 \subsubsection{Componenti principali}
@@ -46,9 +46,9 @@ Gli utenti sono in grado di immagazzinare i dati raccolti su clienti e potenzial
 
 \subsection{Integrazione}
 \begin{itemize}
-    \item Raccolta di dati: l'applicativo ha una funzionalità di \emph{web scraping}\glsfirstoccur che raccoglie i link dei siti web di tutti i potenziali clienti, il compito del tirocinante è quello di creare un \emph{workflow} automatico che si integri con il \emph{web scraper} per acquisire screenshot delle varie pagine del sito web. 
+    \item Raccolta di dati: l'applicativo ha una funzionalità di \emph{\gls{web scraping}}\glsfirstoccur che raccoglie i link dei siti web di tutti i potenziali clienti, il compito del tirocinante è quello di creare un \emph{\gls{workflow}} automatico che si integri con il \emph{web scraper} per acquisire screenshot delle varie pagine del sito web. 
     \item Clusterizzazione: la fase successiva alla raccolta dei dati consiste nello sviluppo di una IA addestrata in maniera non supervisionata che sia in grado di suddividere le varie immagini in \emph{cluster}, differenziati in base alle caratteristiche riconosciute in ogni sito. 
-    \item IA classificativa: in seguito alla raccolta di un \emph{dataset}\glsfirstoccur di dimensioni congrue si procede alla suddivisione manuale degli screenshot precedentemente clusterizzati su una base qualitativa (siti migliorabili e siti ottimi); questo processo viene svolto con l'ottica dell'addestramento di una IA classificativa.
+    \item IA classificativa: in seguito alla raccolta di un \emph{\gls{dataset}}\glsfirstoccur di dimensioni congrue si procede alla suddivisione manuale degli screenshot precedentemente clusterizzati su una base qualitativa (siti migliorabili e siti ottimi); questo processo viene svolto con l'ottica dell'addestramento di una IA classificativa.
     L'IA addestrata in maniera supervisionata ha l'obiettivo di affidare un punteggio in valori centesimali a ogni sito. 
     \item Invio di e-mail automatizzato: l'automazione della posta elettronica procede con l'invio di e-mail personalizzate ai proprietari dei siti web che hanno ricevuto una valutazione scarsa, per offrire loro un servizio di miglioramento.
 \end{itemize}
@@ -77,7 +77,7 @@ Nella lista seguente sono elencati i rischi e le soluzioni ideate.\\
 
 \begin{risk}{Quantità di dati di training insufficiente}
     \riskdescription{l'IA necessita una grande quantità di dati in input per effettuare un training efficace}
-    \risksolution{aumento manuale del \emph{dataset} e ricerca di \emph{dataset} già pronti online}
+    \risksolution{aumento manuale del \emph{\gls{dataset}} e ricerca di \emph{\gls{dataset}} già pronti online}
     \label{risk:hardware} 
 \end{risk}
 
