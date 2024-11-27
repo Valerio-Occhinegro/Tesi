@@ -36,7 +36,7 @@ Tutte le immagini vengono poi convertite in formato Base64 per adattarsi alle ta
 
 \begin{figure}[!h] 
   \centering 
-  \includegraphics[width=0.5\columnwidth]{progettazione/schema-cattura.png} 
+  \includegraphics[width=0.6\columnwidth]{progettazione/schema-cattura.png} 
   \caption{Schema della fase di cattura}
   \label{fig:schema-cattura}
 \end{figure}
@@ -76,7 +76,7 @@ Il primo tentativo è stato effettuato utilizzando un \emph{autoencoder} che sfr
 
 \subsubsection{Autoencoder con strati convoluzionali}
 L'\emph{autoencoder} con strati convoluzionali (Fig.~\ref{fig:schema-conv}) ha consentito un netto miglioramento delle prestazioni e un consumo inferiore della memoria tali da poter aumentare le dimensioni delle immagini e implementare nuovamente l'utilizzo del colore.
-Le modifiche non sono state comunque sufficienti per avere un'esperienza di utilizzo solida causando:
+Le modifiche non sono state comunque sufficienti per avere un'esperienza di utilizzo solida, causando:
 \begin{itemize}
   \item \emph{Overflow} della \emph{\gls{V-RAM}}\glsfirstoccur se non utilizzato sotto specifiche condizioni.
   \item Inconsistenza nei \emph{cluster}.
